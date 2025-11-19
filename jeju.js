@@ -4,7 +4,9 @@ document.querySelector(".close").addEventListener("click", function () {
 });
 document.querySelector("#closepopup1").addEventListener("click", function () {
   document.querySelector(".popup1").style.display = "none";
-  document.querySelector(".popup1").style.opacity = "0";
+});
+document.querySelector("#permitpopup1").addEventListener("click", function () {
+  document.querySelector(".popup1").style.display = "none";
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -77,7 +79,7 @@ reserves.forEach((reserve) => {
 });
 
 window.addEventListener("DOMContentLoaded", () => {
-  const departdate = document.querySelector("#departdate_txt");
+  const departdate = document.querySelectorAll(".departdate_txt");
 
   const today = new Date();
   const nextWeek = new Date();
@@ -93,26 +95,106 @@ window.addEventListener("DOMContentLoaded", () => {
     return `${y}.${m}.${d}(${w})`;
   };
 
-  departdate.innerHTML = `${formatDate(today)} ~ ${formatDate(nextWeek)}`;
+  const dateText = `${formatDate(today)} ~ ${formatDate(nextWeek)}`;
+
+  departdate.forEach((el) => {
+    el.textContent = dateText;
+  });
 });
 
-const depart = document.querySelector("#depart");
-const arrival = document.querySelector("#arrival");
+document.addEventListener("DOMContentLoaded", () => {
+  const departBtns = document.querySelectorAll(".depart");
+  const arrivalBtns = document.querySelectorAll(".arrival");
 
-depart.addEventListener("click", () => {
-  depart.classList.add("active");
-  arrival.classList.remove("active");
-});
-arrival.addEventListener("click", () => {
-  arrival.classList.add("active");
-  depart.classList.remove("active");
+  const popupBg = document.querySelector(".popup_bg");
+  const popup2 = document.querySelector("#popup2");
+  const closePopup2 = document.querySelector(".closepopup2");
+  const checkpopup2 = document.querySelector(".checkpopup2");
+
+  const openPopup = () => {
+    popupBg.style.display = "block";
+    popup2.style.display = "block";
+  };
+  const closePopup = () => {
+    popupBg.style.display = "none";
+    popup2.style.display = "none";
+  };
+
+  closePopup2.addEventListener("click", closePopup);
+  checkpopup2.addEventListener("click", closePopup);
+
+  departBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      departBtns.forEach((el) => el.classList.add("active"));
+      arrivalBtns.forEach((el) => el.classList.remove("active"));
+    });
+  });
+
+  arrivalBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const departText = departBtns[0].textContent.trim();
+
+      if (departText === "출발지") {
+        openPopup();
+        return;
+      }
+
+      departBtns.forEach((el) => el.classList.remove("active"));
+      arrivalBtns.forEach((el) => el.classList.add("active"));
+    });
+  });
 });
 
 const radios = document.querySelectorAll(".radio");
+const labels = document.querySelectorAll('label[for^="radio"]');
 
 radios.forEach((radio) => {
   radio.addEventListener("click", () => {
     radios.forEach((r) => r.classList.remove("active"));
     radio.classList.add("active");
+  });
+});
+
+labels.forEach((label) => {
+  label.addEventListener("click", () => {
+    const id = label.getAttribute("for");
+    const targetRadio = document.getElementById(id);
+
+    if (targetRadio) {
+      targetRadio.click();
+    }
+  });
+});
+document.querySelector('label[for="radio1"]').addEventListener("click", () => {
+  document.querySelector("#ticketing_row_del").style.display = "block";
+  document.querySelector("#ticketing_row_del").style.display = "flex";
+  document.querySelector("#ticketing_row_del").style.alignItems = "center";
+  document.querySelector("#airsearch_hidden").style.display = "none";
+});
+
+document.querySelector('label[for="radio2"]').addEventListener("click", () => {
+  document.querySelector("#ticketing_row_del").style.display = "none";
+  document.querySelector("#airsearch_hidden").style.display = "block";
+  document.querySelector("#ticketing_row_heightup").style.marginTop = "40px";
+  document.querySelector("#ticketing_row_heightup").style.marginBottom = "6px";
+});
+document.querySelector('label[for="radio3"]').addEventListener("click", () => {
+  document.querySelector("#ticketing_row_del").style.display = "none";
+  document.querySelector("#airsearch_hidden").style.display = "block";
+  document.querySelector("#ticketing_row_heightup").style.marginTop = "40px";
+  document.querySelector("#ticketing_row_heightup").style.marginBottom = "6px";
+});
+
+const reservenums = document.querySelectorAll(".reservenum li");
+
+reservenums.forEach((reservenum) => {
+  reservenum.addEventListener("click", () => {
+    reservenums.forEach((li) => li.classList.remove("active"));
+
+    reservenum.classList.add("active");
   });
 });

@@ -331,18 +331,22 @@
             </li>
             <li class="ticketing">
               <div class="ticketing_left">
-                <a href="#" id="depart">출발지</a>
+                <a href="#" class="depart" data-tab="depart">출발지</a>
                 <button id="change_depart_arrival"></button>
-                <a href="#" id="arrival">도착지</a>
+                <a href="#" class="arrival" data-tab="arrival">도착지</a>
               </div>
               <button id="departdate">
-                <span id="departdate_txt"></span>
+                <span class="departdate_txt"></span>
               </button>
               <button id="departnum">
                 <span id="departnum_txt"> 성인1 </span>
               </button>
             </li>
-            <li class="ticketing_row" style="margin-top: 30px">
+            <li
+              class="ticketing_row"
+              style="margin-top: 30px"
+              id="ticketing_row_heightup"
+            >
               <p class="ticket_sale">결제 방법</p>
               <button id="ask"></button>
               <div class="payselect">
@@ -362,9 +366,12 @@
                   기프티켓</label
                 >
               </div>
+              <button id="airsearch_hidden">항공권 검색</button>
+              <select id="select_hidden"></select>
             </li>
             <li
               class="ticketing_row"
+              id="ticketing_row_del"
               style="display: flex; align-items: center; position: relative"
             >
               <p class="ticket_sale">할인 방법</p>
@@ -382,21 +389,36 @@
           </ul>
           <ul id="tab2" class="tab">
             <div class="reservenum">
-              <li>
-                <div class="reservenum_inner">
-                  <input type="text" name="reservenum_inner" id="" />
-                </div>
+              <li class="reservenum-text">
+                <input
+                  type="text"
+                  name="reserve1"
+                  id="reserve1"
+                  placeholder=""
+                />
+                <label for="reserve1">예약번호</label>
               </li>
-              <li></li>
-              <li>
-                <div class="firstname_inner">
-                  <input type="text" name="firstname_inner" id="" />
-                </div>
+              <li class="reservenum-date">
+                <button id="reserve2"></button>
+                <label for="reserve2">탑승일자</label>
               </li>
-              <li>
-                <div class="name_inner">
-                  <input type="text" name="name_inner" id="" />
-                </div>
+              <li class="reservenum-text">
+                <input
+                  type="text"
+                  name="firstname_inner"
+                  id="reserve3"
+                  placeholder=""
+                />
+                <label for="reserve3">성</label>
+              </li>
+              <li class="reservenum-text">
+                <input
+                  type="text"
+                  name="name_inner"
+                  id="reserve4"
+                  placeholder=""
+                />
+                <label for="reserve4">이름</label>
               </li>
             </div>
             <div class="notice">
@@ -411,11 +433,76 @@
                 <p>2명 이상 예약 조회는 <span>여기</span>를 클릭해 주세요</p>
               </li>
             </div>
+            <button id="reservesearch">예약 조회</button>
           </ul>
-          <ul id="tab3" class="tab"></ul>
+          <ul id="tab3" class="tab">
+            <li class="clickcolors" style="margin-bottom: 30px">
+              <a href="#" class="clickcolor active">운항 스케줄</a>
+              <a href="#" class="clickcolor" style="margin-left: 18px"
+                >출도착 현황</a
+              >
+            </li>
+            <li class="ticketing_row2" style="margin-top: 20px">
+              <input type="radio" name="point" id="radio1" checked /><label
+                for="radio1"
+                ><div class="radio active"></div>
+                <p>왕복</p></label
+              >
+              <input type="radio" name="point" id="radio2" /><label for="radio2"
+                ><div class="radio"></div>
+                <p>편도</p></label
+              >
+            </li>
+            <li
+              class="ticketing"
+              style="margin-top: 30px; width: auto"
+              id="ticketing2"
+            >
+              <div class="ticketing_left">
+                <a href="#" class="depart" data-tab="depart">출발지</a>
+                <button id="change_depart_arrival"></button>
+                <a href="#" class="arrival" data-tab="arrival">도착지</a>
+              </div>
+              <button id="departdate">
+                <span class="departdate_txt"></span>
+              </button>
+              <button id="search">조회</button>
+            </li>
+          </ul>
         </div>
       </div>
-      <section></section>
+      <section>
+        <ul>
+          <li>
+            <span>
+              <img src="images/section_quick_01.webp" alt="section_img">
+            </span><a
+              href="#"
+            >사전 수하물</a>
+          </li>
+          <li><span><img src="images/section_quick_02.webp" alt="section_img" /></span><a
+              href="#"
+            ><a href="#">사전 좌석</a></li>
+          <li><span><img src="images/section_quick_03.webp" alt="section_img" /></span><a
+              href="#"
+            ><a href="#">사전 기내식</a></li>
+          <li><span><img src="images/section_quick_04.webp" alt="section_img" /></span><a
+              href="#"
+            ><a href="#">여행자 보험</a></li>
+          <li><span><img src="images/section_quick_05.webp" alt="section_img" /></span><a
+              href="#"
+            ><a href="#">모바일 탑승권</a></li>
+          <li><span><img src="images/section_quick_06.webp" alt="section_img" /></span><a
+              href="#"
+            ><a href="#">공항 정보</a></li>
+          <li><span><img src="images/section_quick_07.webp" alt="section_img" /></span><a
+              href="#"
+            ><a href="#">운송제한 물품</a></li>
+          <li><span><img src="images/section_quick_08_n.webp" alt="section_img" /></span><a
+              href="#"
+            ><a href="#">반려동물 동반</a></li>
+        </ul>
+      </section>
     </main>
     <article>
       <div class="article1"></div>
@@ -426,6 +513,7 @@
       <div class="article6"></div>
     </article>
     <footer></footer>
+    <div class="popup_bg"></div>
     <div class="popup1">
       <div class="popup1_inner">
         <p>
@@ -436,11 +524,11 @@
         <button id="closepopup1"></button>
       </div>
     </div>
-    <div class="popup2">
+    <div id="popup2">
       <div class="popup2_inner">
+        <button class="closepopup2"></button>
         <p>가는 여정을 선택하세요.</p>
-        <button id="closepopup2"></button>
-        <button id="checkpopup2">확인</button>
+        <button class="checkpopup2">확인</button>
       </div>
     </div>
   </body>

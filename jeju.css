@@ -32,6 +32,7 @@ body {
   vertical-align: baseline;
   line-height: 1.5;
   letter-spacing: -0.2px;
+  height: 100%;
 }
 ul {
   list-style: none;
@@ -312,7 +313,6 @@ main {
   height: 1090px;
   position: relative;
   transform: translateY(110px);
-  border-bottom: 2px solid red;
 }
 .slider {
   width: 100%;
@@ -417,7 +417,7 @@ main {
 
 .ticket {
   position: absolute;
-  bottom: 20px;
+  top: 340px;
   left: 50%;
   transform: translate(-50%);
   width: 1004px;
@@ -428,6 +428,7 @@ main {
 .ticket .reserves {
   display: flex;
   gap: 2px;
+  z-index: 20;
 }
 .reserve {
   width: 240px;
@@ -440,7 +441,6 @@ main {
   font-size: 18px;
   cursor: pointer;
   font-weight: 700;
-  z-index: 20;
 }
 .reserve:hover {
   background-color: #fff;
@@ -456,7 +456,6 @@ main {
   background-color: #fff;
   position: relative;
   border-radius: 0 8px 8px 8px;
-  box-shadow: 0 1px 6px #0000001f;
   padding: 20px 20px 30px;
 }
 .ticket li {
@@ -495,8 +494,8 @@ main {
   float: left;
   width: auto;
 }
-.ticket #depart,
-#arrival {
+.ticket .depart,
+.ticket .arrival {
   color: #aaa;
   font-size: 24px;
   font-weight: 800;
@@ -507,47 +506,35 @@ main {
   flex: 1;
   position: relative;
 }
-.ticket #depart {
+.ticket .depart {
   order: 1;
   text-align: left;
 }
-#depart::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background-color: #000;
-  z-index: 10;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: all 0.4s ease;
-}
-#depart.active::after {
-  transform: scaleX(1);
-}
 
-#arrival::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background-color: #000;
-  z-index: 10;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: all 0.4s ease;
-}
-#arrival.active::after {
-  transform: scaleX(1);
-}
-.ticket #arrival {
+.ticket .arrival {
   order: 3;
   text-align: right;
 }
+
+.depart::after,
+.arrival::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #000;
+  z-index: 10;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: all 0.4s ease;
+}
+.depart.active::after,
+.arrival.active::after {
+  transform: scaleX(1);
+}
+
 .ticket #change_depart_arrival {
   background: url(images/reserve_step1_icon.png) no-repeat;
   width: 36px;
@@ -583,7 +570,7 @@ main {
 #departnum {
   margin-right: 20px;
 }
-#departdate_txt,
+.departdate_txt,
 #departnum_txt {
   display: inline-block;
   position: relative;
@@ -598,7 +585,7 @@ main {
   color: #333 !important;
   cursor: pointer;
 }
-#departdate_txt::before {
+.departdate_txt::before {
   content: "";
   position: absolute;
   top: 2px;
@@ -622,7 +609,10 @@ main {
 }
 .ticketing_row {
   display: block;
-  margin-top: 20px;
+  margin-top: 26px;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .ticket_sale {
@@ -641,6 +631,7 @@ main {
   width: 20px;
   height: 20px;
   margin-right: 20px;
+  cursor: pointer;
 }
 .ticketing_row .payselect {
   display: flex;
@@ -666,6 +657,35 @@ main {
   margin: 0;
   cursor: pointer;
   position: absolute;
+}
+#airsearch_hidden {
+  width: 160px;
+  height: 50px;
+  padding: 14px 0;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+  border: 0;
+  border-radius: 2px;
+  background-color: #aaa;
+  margin-left: 26px;
+  margin-top: 0;
+  cursor: pointer;
+  position: absolute;
+  right: 3px;
+  bottom: -10px;
+  display: none;
+}
+#select_hidden {
+  width: 370px;
+  height: 48px;
+  color: #ddd;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  outline: none;
+  padding-right: 20px;
+  margin-left: 40px;
 }
 .radio {
   width: 20px;
@@ -760,14 +780,124 @@ main {
   margin-left: 26px;
   cursor: pointer;
 }
+
+#tab2 {
+  position: relative;
+  background-color: #fff;
+  width: 1004px;
+  margin: 0 auto;
+  z-index: 20;
+  border-radius: 0 8px 8px 8px;
+  padding: 20px 20px 30px;
+}
 #tab2 .reservenum {
   display: grid;
   grid-auto-flow: column;
   align-items: center;
   grid-gap: 20px;
+  padding-top: 18px;
+}
+.reservenum li {
+  width: 100%;
+  position: relative;
+  margin-bottom: 10px;
+}
+.reservenum li::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #000;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: 0.3s ease;
+}
+.reservenum li.active::after {
+  transform: scaleX(1);
+}
+.reservenum-date {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  position: relative;
+  padding: 16px 0 0;
+  justify-content: space-between;
+}
+.reservenum-text input {
+  width: 100%;
+  position: relative;
+  padding: 8px 10px 8px 0;
+  text-align: left;
+  caret-color: #ff5000;
+  background-color: transparent;
+  color: #333;
+  font-size: 14px;
+  font-weight: 400;
+  outline: none;
+  display: flex;
+  flex-shrink: 1;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+.reservenum-text label {
+  position: absolute;
+  left: 0;
+  bottom: 8px;
+  padding: 0;
+  font-size: 14px;
+  transition: all 0.15s;
+  color: #888;
+  pointer-events: none;
+}
+.reservenum-text input:focus + label,
+.reservenum-text input:not(:placeholder-shown) + label {
+  top: -18px;
+  font-size: 11px;
+}
+.reservenum-text input::placeholder {
+  opacity: 0;
+}
+
+.reservenum-date #reserve2 {
+  width: 220px;
+  position: relative;
+  padding: 8px 33px 8px 10px;
+  background-color: transparent;
+  color: #888;
+  font-size: 14px;
+  font-weight: 700;
+  outline: none;
+  display: flex;
+  flex-shrink: 1;
+  border: 0;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+#reserve2::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 21px;
+  height: 21px;
+  margin-top: -20px;
+  background: url(images/icon-calendar-black.png) 0 0 no-repeat;
+  background-size: 21px auto;
+  box-sizing: border-box;
+}
+.reservenum-date label {
+  position: absolute;
+  top: -14px;
+  left: 0;
+  padding: 0 !important;
+  color: #888;
+  font-size: 11px;
 }
 #tab2 .notice {
-  margin-top: 26px;
+  padding-top: 10px;
 }
 #tab2 .notice p {
   padding-left: 8px;
@@ -775,27 +905,184 @@ main {
   color: #333;
   font-weight: 400;
   position: relative;
-  line-height: 24px;
+  line-height: 28px;
 }
 #tab2 .notice p::before {
   content: "";
   display: inline-block;
   position: absolute;
-  top: 9px;
+  top: 50%;
+  transform: translateY(-50%);
   left: 0;
   width: 2px;
   height: 2px;
   border-radius: 100%;
   background: #888;
 }
+
+.notice span {
+  color: #ff5000;
+  text-decoration-line: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+#reservesearch {
+  position: absolute;
+  right: 24px;
+  bottom: 30px;
+  width: 160px;
+  height: 50px;
+  padding: 14px 0;
+  margin-top: 0;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+  border: 0;
+  border-radius: 2px;
+  background-color: #aaa;
+  cursor: pointer;
+}
+.ticketing_row2 {
+  display: flex;
+  column-gap: 30px;
+  min-height: 30px;
+  align-items: center;
+}
+.ticketing_row2 input[type="radio"] {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  margin: 0;
+  cursor: pointer;
+  position: absolute;
+}
+
+.ticketing_row2 label {
+  vertical-align: top;
+  display: inline-flex;
+  cursor: pointer;
+  height: 22px;
+  line-height: 20px;
+  font-weight: 400;
+  font-size: 14px !important;
+  color: #333 !important;
+  position: relative;
+  gap: 6px;
+}
+.ticketing {
+  min-height: 30px;
+}
+#ticketing2 {
+  min-width: 1080px;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 47% 1fr 26%;
+}
+.ticketing_left2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  float: left;
+  width: auto;
+}
+#search {
+  width: 160px;
+  min-width: 140px;
+  height: 50px;
+  padding: 0 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 50px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+  border: 0;
+  border-radius: 2px;
+  background-color: #aaa;
+  cursor: pointer;
+}
 main section {
+  padding-top: 40px;
+  max-width: 1920px;
+  min-height: 208px !important;
+  background-color: #f8f8f8;
+}
+section ul {
+  width: 1004px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  box-sizing: content-box;
+  position: relative;
+}
+section li {
+  width: 122px;
+  height: 100px;
+  min-width: 70px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+section span {
+  width: 100px;
+  height: 100px;
+  border: 0;
+  border-radius: 100%;
+  overflow: hidden;
+  cursor: pointer;
+}
+section li img {
+  width: 100px;
+  height: 100px;
+  transition: all 0.4s;
+}
+section li:hover img {
+  transform: scale(1.15);
+}
+section a {
+  font-weight: 400;
+  color: #333;
+  font-size: 16px;
+}
+section li:hover a {
+  font-weight: 700;
+  color: #222;
+}
+.popup_bg {
+  background-color: #0006;
   width: 100%;
-  height: 200px;
-  background-color: yellow;
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  display: none;
+}
+.popup_bg::before {
+  content: "";
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.05em;
 }
 .popup1 {
   width: 100%;
-  height: 73px;
+  height: 60px;
   display: flex;
   align-items: center;
   position: fixed;
@@ -813,6 +1100,7 @@ main section {
   position: relative;
   padding-right: 90px;
   display: flex;
+  align-items: center;
 }
 .popup1 p {
   font-size: 13px;
@@ -822,20 +1110,19 @@ main section {
 }
 .popup1 #permitpopup1 {
   right: 36px;
-  margin-top: -3px;
   position: absolute;
-  top: 55%;
+  top: 50%;
   width: 54px;
   height: 28px;
   color: #666;
   font-size: 13px;
   border: 1px solid #ddd;
   background-color: #fff;
-  transform: translateY(-55%);
+  transform: translateY(-50%);
   cursor: pointer;
 }
 .popup1 #closepopup1 {
-  margin: -3px;
+  margin-top: 1px;
   position: absolute;
   right: 0;
   top: 50%;
@@ -847,13 +1134,51 @@ main section {
   transform: translateY(-50%);
   cursor: pointer;
 }
-.popup2 {
+#popup2 {
   width: 310px;
+  height: fit-content;
   border-radius: 4px;
   padding: 20px;
-  position: relative;
-  left: 50%;
+  position: fixed;
   top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   background-color: #fff;
+  z-index: 3000;
+  display: none;
+}
+#popup2 .popup2_inner {
+  width: 100%;
+  position: relative;
+}
+#popup2 .closepopup2 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 26px;
+  height: 26px;
+  background: url(images/icon-close-popup.png) 0 0 no-repeat;
+  background-size: 100% auto;
+  cursor: pointer;
+  border: 0;
+  display: inline-block;
+}
+#popup2 p {
+  text-align: left;
+  display: inline-block;
+  width: 100%;
+  height: 110px;
+  align-content: center;
+  font-size: 16px;
+  color: #333;
+  line-height: 20px;
+}
+#popup2 .checkpopup2 {
+  width: 100%;
+  border: 0;
+  background-color: #ff5000;
+  color: #fff;
+  height: 40px;
+  padding: 0 16px;
+  cursor: pointer;
 }
