@@ -310,22 +310,25 @@ nav .nav_inner {
 }
 main {
   width: 100%;
-  height: 1090px;
+  height: 890px;
   position: relative;
   transform: translateY(110px);
+  border-bottom: 2px solid red;
 }
 .slider {
   width: 100%;
   height: 680px;
+  max-width: 1920px;
   overflow: hidden;
   position: relative;
   clip-path: inset(0 0 0 0);
+  cursor: pointer;
 }
 .slides {
   display: flex;
   width: 500% !important;
   height: 680px;
-  transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition: transform 0.8s cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 .slide {
   display: block;
@@ -431,7 +434,7 @@ main {
   z-index: 20;
 }
 .reserve {
-  width: 240px;
+  width: 250px;
   height: 50px;
   text-align: center;
   align-content: center;
@@ -535,7 +538,7 @@ main {
   transform: scaleX(1);
 }
 
-.ticket #change_depart_arrival {
+.change_depart_arrival {
   background: url(images/reserve_step1_icon.png) no-repeat;
   width: 36px;
   height: 36px;
@@ -545,8 +548,9 @@ main {
   order: 2;
   cursor: pointer;
   margin: 0 30px;
+  position: relative;
 }
-.ticket #change_depart_arrival:hover {
+.change_depart_arrival:hover {
   content: "";
   background: url(images/reserve_step1_icon.png) no-repeat;
   width: 36px;
@@ -556,6 +560,25 @@ main {
   background-size: 605px;
   z-index: 10;
 }
+.change_depart_arrival.active {
+  background: url(images/icon_one_way.png) no-repeat;
+  background-position: 0 0;
+  background-size: 36px auto;
+  z-index: 30;
+}
+/* #del_depart_arrival::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  background: url(images/icon_one_way.png) no-repeat;
+  background-position: 0 0;
+  background-size: 36px auto;
+  z-index: 30;
+  display: none;
+} */
 
 .ticket #departdate,
 #departnum {
@@ -609,7 +632,7 @@ main {
 }
 .ticketing_row {
   display: block;
-  margin-top: 26px;
+  margin-top: 20px;
   position: relative;
   display: flex;
   align-items: center;
@@ -635,6 +658,7 @@ main {
 }
 .ticketing_row .payselect {
   display: flex;
+  align-items: center;
   column-gap: 30px;
   line-height: 0;
 }
@@ -674,18 +698,20 @@ main {
   cursor: pointer;
   position: absolute;
   right: 3px;
-  bottom: -10px;
+  /* bottom: -10px; */
   display: none;
 }
 #select_hidden {
   width: 370px;
-  height: 48px;
+  height: 50px;
   color: #ddd;
   border: 1px solid #ddd;
   border-radius: 3px;
   outline: none;
   padding-right: 20px;
   margin-left: 40px;
+  display: none;
+  position: relative;
 }
 .radio {
   width: 20px;
@@ -1056,6 +1082,65 @@ section li:hover a {
   font-weight: 700;
   color: #222;
 }
+
+article {
+  width: 1004px;
+  margin: 0 auto;
+}
+article .article_inner {
+  position: relative;
+  margin: 60px auto;
+}
+.article1 {
+  margin-top: 180px;
+}
+.article_inner .article_title {
+  font-size: 30px;
+  font-weight: 800;
+  color: #000;
+  letter-spacing: normal;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 30px;
+}
+.article_title .title_side {
+  font-weight: 400;
+  font-size: 16px;
+  color: #333;
+  letter-spacing: normal;
+}
+.article1_content {
+  overflow: hidden;
+  margin-left: 4px;
+}
+.article1_content .swiper {
+  width: 100%;
+  height: 144px;
+  margin-right: auto;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  z-index: 1;
+  cursor: pointer;
+}
+.swipes {
+  width: 500% !important;
+  height: 144px;
+  display: flex;
+  transition: transform 0.5s ease;
+}
+.swipe {
+  border-radius: 10px;
+  width: 320px;
+  height: 140px;
+  position: relative;
+  background-position: 0;
+  background-size: contain;
+}
+.sw1 {
+  background: url(images/20251117130508880.avif) no-repeat;
+}
 .popup_bg {
   background-color: #0006;
   width: 100%;
@@ -1080,7 +1165,7 @@ section li:hover a {
   vertical-align: middle;
   margin-right: -0.05em;
 }
-.popup1 {
+#popup1 {
   width: 100%;
   height: 60px;
   display: flex;
@@ -1094,7 +1179,7 @@ section li:hover a {
   z-index: 11;
   box-shadow: inherit;
 }
-.popup1_inner {
+#popup1_inner {
   width: 1004px;
   margin: 0 auto;
   position: relative;
@@ -1102,13 +1187,13 @@ section li:hover a {
   display: flex;
   align-items: center;
 }
-.popup1 p {
+#popup1 p {
   font-size: 13px;
   font-weight: 400;
   line-height: 1.4;
   color: #333;
 }
-.popup1 #permitpopup1 {
+#popup1 .permitpopup1 {
   right: 36px;
   position: absolute;
   top: 50%;
@@ -1121,7 +1206,7 @@ section li:hover a {
   transform: translateY(-50%);
   cursor: pointer;
 }
-.popup1 #closepopup1 {
+#popup1 .closepopup1 {
   margin-top: 1px;
   position: absolute;
   right: 0;
@@ -1134,7 +1219,7 @@ section li:hover a {
   transform: translateY(-50%);
   cursor: pointer;
 }
-#popup2 {
+.popup {
   width: 310px;
   height: fit-content;
   border-radius: 4px;
@@ -1147,7 +1232,7 @@ section li:hover a {
   z-index: 3000;
   display: none;
 }
-#popup2 .popup2_inner {
+.popup_inner {
   width: 100%;
   position: relative;
 }
@@ -1181,4 +1266,53 @@ section li:hover a {
   height: 40px;
   padding: 0 16px;
   cursor: pointer;
+}
+
+#popup3 .alert_title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+#popup3 h2 {
+  font-size: 18px;
+  font-weight: 700;
+}
+#popup3 #closepopup3 {
+  width: 26px;
+  height: 26px;
+  background: url(images/icon-close-popup.png) 0 0 no-repeat;
+  background-size: 100% auto;
+  cursor: pointer;
+  border: 0;
+  display: inline-block;
+}
+#popup3 p {
+  font-size: 16px;
+  color: #333;
+  line-height: 24px;
+}
+#popup3 .wrap {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+}
+.wrap button {
+  width: 100%;
+  height: 40px;
+  cursor: pointer;
+  padding: 0 16px;
+  color: #fff;
+  border: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+}
+#cancelpopup3 {
+  background-color: #000;
+}
+#checkpopup3 {
+  background-color: #ff5000;
 }

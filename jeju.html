@@ -10,6 +10,7 @@
       href="https://static.jejuair.net/hpgg/resources/images/icon/favicon.ico"
     />
     <link rel="stylesheet" href="jeju.css".css">
+    <script src="jquery-3.7.1.min.js"></script>
     <script src="jeju.js" defer></script>
   </head>
   <body>
@@ -317,7 +318,7 @@
         </div>
         <div class="ticket">
           <h2 class="reserves">
-            <p class="reserve active" data-tab="tab1">항공권 예매</p>
+            <p class="reserve active" data-tab="tab1" >항공권 예매</p>
             <p class="reserve" data-tab="tab2">예약 조회</p>
             <p class="reserve" data-tab="tab3">운항 조회</p>
           </h2>
@@ -332,7 +333,7 @@
             <li class="ticketing">
               <div class="ticketing_left">
                 <a href="#" class="depart" data-tab="depart">출발지</a>
-                <button id="change_depart_arrival"></button>
+                <button class="change_depart_arrival"></button>
                 <a href="#" class="arrival" data-tab="arrival">도착지</a>
               </div>
               <button id="departdate">
@@ -350,6 +351,7 @@
               <p class="ticket_sale">결제 방법</p>
               <button id="ask"></button>
               <div class="payselect">
+                <div class="radio-group" data-group="point">
                 <input type="radio" name="point" id="radio1" checked /><label
                   for="radio1"
                   ><div class="radio active"></div>
@@ -365,6 +367,7 @@
                   ><div class="radio"></div>
                   기프티켓</label
                 >
+                </div>
               </div>
               <button id="airsearch_hidden">항공권 검색</button>
               <select id="select_hidden"></select>
@@ -372,7 +375,6 @@
             <li
               class="ticketing_row"
               id="ticketing_row_del"
-              style="display: flex; align-items: center; position: relative"
             >
               <p class="ticket_sale">할인 방법</p>
               <button id="ask"></button>
@@ -443,24 +445,25 @@
               >
             </li>
             <li class="ticketing_row2" style="margin-top: 20px">
-              <input type="radio" name="point" id="radio1" checked /><label
-                for="radio1"
+              <div class="radio-group" data-group="point2">
+              <input type="radio" name="point2" id="radio4" checked /><label
+                for="radio4"
                 ><div class="radio active"></div>
                 <p>왕복</p></label
               >
-              <input type="radio" name="point" id="radio2" /><label for="radio2"
+              <input type="radio" name="point2" id="radio5" /><label for="radio5"
                 ><div class="radio"></div>
                 <p>편도</p></label
               >
+              </div>
             </li>
             <li
               class="ticketing"
-              style="margin-top: 30px; width: auto"
               id="ticketing2"
             >
               <div class="ticketing_left">
                 <a href="#" class="depart" data-tab="depart">출발지</a>
-                <button id="change_depart_arrival"></button>
+                <button class="change_depart_arrival"></button>
                 <a href="#" class="arrival" data-tab="arrival">도착지</a>
               </div>
               <button id="departdate">
@@ -504,31 +507,129 @@
         </ul>
       </section>
     </main>
-    <article>
-      <div class="article1"></div>
-      <div class="article2"></div>
-      <div class="article3"></div>
-      <div class="article4"></div>
-      <div class="article5"></div>
-      <div class="article6"></div>
+    <article class="article1">
+        <div class="article_inner">
+        <h3 class="article_title">특별한 혜택을 확인해 보세요.
+          <span class="title_side">전체보기</span>
+        </h3>
+        <div class="article1_content">
+          <div class="swiper">
+            <div class="swipes">
+              <a href="#" class="swipe sw1">
+                <h2 class="sw_banner"></h2>
+              </a>
+              <a href="#" class="swipe sw2">
+                <h2 class="sw_banner"></h2>
+              </a>
+              <a href="#" class="swipe sw3">
+                <h2 class="sw_banner"></h2>
+              </a>
+              <a href="#" class="swipe sw4">
+                <h2 class="sw_banner"></h2>
+              </a>
+              <a href="#" class="swipe sw5">
+                <h2 class="sw_banner"></h2>
+              </a>
+              <a href="#" class="swipe sw6">
+                <h2 class="sw_banner"></h2>
+              </a>
+              <a href="#" class="swipe sw7">
+                <h2 class="sw_banner"></h2>
+              </a>
+              <a href="#" class="swipe sw8">
+                <h2 class="sw_banner"></h2>
+              </a>
+              <a href="#" class="swipe sw9">
+                <h2 class="sw_banner"></h2>
+              </a>
+              <a href="#" class="swipe sw10">
+                <h2 class="sw_banner"></h2>
+              </a>
+              <a href="#" class="swipe sw11">
+                <h2 class="sw_banner"></h2>
+              </a>
+              <a href="#" class="swipe sw12">
+                <h2 class="sw_banner"></h2>
+              </a>
+              <a href="#" class="swipe sw13">
+                <h2 class="sw_banner"></h2>
+              </a>
+              <a href="#" class="swipe sw14">
+                <h2 class="sw_banner"></h2>
+              </a>
+              <a href="#" class="swipe sw15">
+                <h2 class="sw_banner"></h2>
+              </a>
+            </div>
+          </div>
+          <div class="step_btn"></div>
+        </div>
+        </div>
     </article>
+    <!-- <article class="article2">
+      <div class="article_inner">
+        <h3 class="article_title">여행에 편리함을 더해보세요.
+        </h3>
+        <div class="article2_content"></div>
+        </div>
+    </article>
+    <article class="article3">
+      <div class="article_inner">
+        <h3 class="article_title">J 멤버스 전용 혜택을 만나보세요.
+        </h3>
+        <div class="article3_content"></div>
+        </div>
+    </article>   
+     <article class="article4">
+      <div class="article_inner">
+        <h3 class="article_title">지금 뜨는 인기 노선을 확인해 보세요.
+          <span class="title_side">*1인 편도총액 기준</span>
+        </h3>
+        <div class="article4_content"></div>
+        </div>
+    </article>
+     <article class="article5">
+      <div class="article_inner">
+        <h3 class="article_title">J 멤버스 혜택존을 경험해 보세요.
+          <span class="title_side">전체보기</span>
+        </h3>
+        <div class="article5_content"></div>
+        </div>
+     <article class="article6">
+      <div class="article_inner">
+        <h3 class="article_title">공지사항을 확인해 주세요.
+          <span class="title_side">
+전체보기</span>
+        </h3>
+        <div class="article6_content"></div>
+        </div>
+    </article> -->
     <footer></footer>
     <div class="popup_bg"></div>
-    <div class="popup1">
-      <div class="popup1_inner">
+    <div id="popup1">
+      <div id="popup1_inner">
         <p>
           더 원활한 사용을 위해 쿠키를 허용하고 제주항공 웹 사이트를
           사용해주세요.
         </p>
-        <button id="permitpopup1">허용</button>
-        <button id="closepopup1"></button>
+        <button class="permitpopup1" onclick="closePopup('popup1')">허용</button>
+        <button class="closepopup1" onclick="closePopup('popup1')"></button>
       </div>
     </div>
-    <div id="popup2">
-      <div class="popup2_inner">
-        <button class="closepopup2"></button>
+    <div id="popup2" class="popup">
+      <div class="popup_inner">
+        <button class="closepopup2" onclick="closePopup('popup2')"></button>
         <p>가는 여정을 선택하세요.</p>
-        <button class="checkpopup2">확인</button>
+        <button class="checkpopup2" onclick="closePopup('popup2')">확인</button>
+      </div>
+    </div>
+    <div id="popup3" class="popup">
+      <div class="popup_inner">
+        <span class="alert_title"><h2>알림</h2><button id="closepopup3" class="closepopup3"></button></span>
+        <p>로그인이 필요한 서비스입니다.<br>로그인해주세요!</p>
+        <div class="wrap">
+          <button id="cancelpopup3" class="closepopup3">취소</button>
+        <button id="checkpopup3" class="closepopup3">확인</button></div>
       </div>
     </div>
   </body>
