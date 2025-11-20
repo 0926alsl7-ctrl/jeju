@@ -1145,10 +1145,10 @@ article .article_inner {
   height: 140px;
   position: relative;
   background-position: 0;
-  background-size: contain;
 }
 .sw1 {
   background: url(images/20251117130508880.avif) no-repeat;
+  background-size: 100%;
 }
 .popup_bg {
   background-color: #0006;

@@ -1,3 +1,4 @@
+/// <reference path="./jquery.d.ts" />
 // 팝업 open
 
 function openPopup(popupId) {
@@ -130,15 +131,25 @@ document.addEventListener("DOMContentLoaded", () => {
   goToSlide(0);
 });
 
-//클릭하면 색깔 변함 + 밑줄효과
-const clickcolors = document.querySelectorAll(".clickcolor");
-
-clickcolors.forEach((clickcolor) => {
-  clickcolor.addEventListener("click", () => {
-    clickcolors.forEach((item) => item.classList.remove("active"));
-    clickcolor.classList.add("active");
-  });
+$(".clickcolors a").click(function () {
+  $(".clickcolors a").removeClass("active");
+  $(this).addClass("active");
 });
+$(".reserve").click(function () {
+  if ($(this).index() == 0) {
+    $(".clickcolors a").removeClass("active");
+    $(".clickcolors a").eq(0).addClass("active");
+  }
+});
+// //클릭하면 색깔 변함 + 밑줄효과
+// const clickcolors = document.querySelectorAll(".clickcolor");
+
+// clickcolors.forEach((clickcolor) => {
+//   clickcolor.addEventListener("click", () => {
+//     clickcolors.forEach((item) => item.classList.remove("active"));
+//     clickcolor.classList.add("active");
+//   });
+// });
 
 // 항공권예매 예약 조회 운항조회 버튼 누르면 > 탭
 const reserves = document.querySelectorAll(".reserve");
@@ -280,16 +291,23 @@ reservenums.forEach((reservenum) => {
   });
 });
 
-document.querySelector("#departdate").addEventListener("click", () => {
+$("#departdate").click(() => {
   openPopup("popup4");
 });
-document.querySelector("#departnum").addEventListener("click", () => {
+$("#departnum").click(() => {
   openPopup("popup5");
 });
+// document.querySelector("#departdate").addEventListener("click", () => {
+//   openPopup("popup4");
+// });
+// document.querySelector("#departnum").addEventListener("click", () => {
+//   openPopup("popup5");
+// });
 
 // 해결안된거
 // radio group -> #radio1, #radio2, #radio3 클릭시, #radio4, #radio5 까지 영향 미침
 // clickcolors -> 동일 tab1 => tab3 까지 영향 미침
+// jquery prop
 // #radio4, #radio5 -> 클릭시 편도/왕복
 // (button class = "change_deaprt_arrival" 배경 이미지 변경안댐)
-// c
+//
