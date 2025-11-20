@@ -71,6 +71,7 @@ header .topbanner {
 }
 .topbanner span {
   letter-spacing: -2px;
+  font-weight: 700;
 }
 .topbanner .close {
   position: absolute;
@@ -539,19 +540,32 @@ main {
 }
 
 .change_depart_arrival {
-  background: url(images/reserve_step1_icon.png) no-repeat;
+  position: relative;
+  order: 2;
+  width: 36px;
+  height: 36px;
+  margin: 0 30px;
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
+}
+
+.change_depart_arrival::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 36px;
   height: 36px;
   border: 0;
+  border-radius: 100%;
+  background: url(images/reserve_step1_icon.png) no-repeat;
   background-position: 0 -88px;
   background-size: 605px;
-  order: 2;
   cursor: pointer;
-  margin: 0 30px;
-  position: relative;
+  z-index: 5;
 }
-.change_depart_arrival:hover {
-  content: "";
+.change_depart_arrival:hover::before {
   background: url(images/reserve_step1_icon.png) no-repeat;
   width: 36px;
   height: 36px;
@@ -560,24 +574,19 @@ main {
   background-size: 605px;
   z-index: 10;
 }
-.change_depart_arrival.active {
-  background: url(images/icon_one_way.png) no-repeat;
-  background-position: 0 0;
-  background-size: 36px auto;
-  z-index: 30;
-}
-/* #del_depart_arrival::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
+/* /* .hidden_change_depart_arrival {
+  order: 2;
   width: 36px;
   height: 36px;
+  border: 0;
   background: url(images/icon_one_way.png) no-repeat;
   background-position: 0 0;
   background-size: 36px auto;
-  z-index: 30;
+  cursor: pointer;
+  border: 0;
+  z-index: 100;
   display: none;
+ background-color: white;
 } */
 
 .ticket #departdate,
@@ -1259,6 +1268,68 @@ article .article_inner {
   line-height: 20px;
 }
 #popup2 .checkpopup2 {
+  width: 100%;
+  border: 0;
+  background-color: #ff5000;
+  color: #fff;
+  height: 40px;
+  padding: 0 16px;
+  cursor: pointer;
+}
+#popup4 .closepopup4 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 26px;
+  height: 26px;
+  background: url(images/icon-close-popup.png) 0 0 no-repeat;
+  background-size: 100% auto;
+  cursor: pointer;
+  border: 0;
+  display: inline-block;
+}
+#popup4 p {
+  text-align: left;
+  display: inline-block;
+  width: 100%;
+  height: 110px;
+  align-content: center;
+  font-size: 16px;
+  color: #333;
+  line-height: 20px;
+}
+#popup4 .checkpopup4 {
+  width: 100%;
+  border: 0;
+  background-color: #ff5000;
+  color: #fff;
+  height: 40px;
+  padding: 0 16px;
+  cursor: pointer;
+}
+#popup5 .closepopup5 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 26px;
+  height: 26px;
+  background: url(images/icon-close-popup.png) 0 0 no-repeat;
+  background-size: 100% auto;
+  cursor: pointer;
+  border: 0;
+  display: inline-block;
+}
+#popup5 p {
+  text-align: left;
+  display: inline-block;
+  width: 100%;
+  height: 110px;
+  align-content: center;
+  font-size: 16px;
+  color: #333;
+  line-height: 20px;
+}
+#popup5 .checkpopup5 {
   width: 100%;
   border: 0;
   background-color: #ff5000;

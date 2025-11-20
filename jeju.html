@@ -351,7 +351,6 @@
               <p class="ticket_sale">결제 방법</p>
               <button id="ask"></button>
               <div class="payselect">
-                <div class="radio-group" data-group="point">
                 <input type="radio" name="point" id="radio1" checked /><label
                   for="radio1"
                   ><div class="radio active"></div>
@@ -367,7 +366,6 @@
                   ><div class="radio"></div>
                   기프티켓</label
                 >
-                </div>
               </div>
               <button id="airsearch_hidden">항공권 검색</button>
               <select id="select_hidden"></select>
@@ -445,17 +443,15 @@
               >
             </li>
             <li class="ticketing_row2" style="margin-top: 20px">
-              <div class="radio-group" data-group="point2">
               <input type="radio" name="point2" id="radio4" checked /><label
                 for="radio4"
-                ><div class="radio active"></div>
+                ><div class="radio"></div>
                 <p>왕복</p></label
               >
               <input type="radio" name="point2" id="radio5" /><label for="radio5"
                 ><div class="radio"></div>
                 <p>편도</p></label
               >
-              </div>
             </li>
             <li
               class="ticketing"
@@ -463,7 +459,8 @@
             >
               <div class="ticketing_left">
                 <a href="#" class="depart" data-tab="depart">출발지</a>
-                <button class="change_depart_arrival"></button>
+                <button class="change_depart_arrival">
+                </button>
                 <a href="#" class="arrival" data-tab="arrival">도착지</a>
               </div>
               <button id="departdate">
@@ -630,6 +627,20 @@
         <div class="wrap">
           <button id="cancelpopup3" class="closepopup3">취소</button>
         <button id="checkpopup3" class="closepopup3">확인</button></div>
+      </div>
+    </div>
+        <div id="popup4" class="popup">
+      <div class="popup_inner">
+        <button class="closepopup4" onclick="closePopup('popup4')"></button>
+        <p>여정을 선택하세요.</p>
+        <button class="checkpopup4" onclick="closePopup('popup4')">확인</button>
+      </div>
+    </div>
+        <div id="popup5" class="popup">
+      <div class="popup_inner">
+        <button class="closepopup5" onclick="closePopup('popup5')"></button>
+        <p>여정 및 일정을 선택하세요.</p>
+        <button class="checkpopup5" onclick="closePopup('popup5')">확인</button>
       </div>
     </div>
   </body>

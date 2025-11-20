@@ -29,9 +29,9 @@ const radio3 = document.querySelector("#radio3");
 const radio4 = document.querySelector("#radio4");
 const radio5 = document.querySelector("#radio5");
 
-const radio1Label = document.querySelector('label[for="radio1"]');
-const radio2Label = document.querySelector('label[for="radio2"]');
-const radio3Label = document.querySelector('label[for="radio3"]');
+// const radio1Label = document.querySelector('label[for="radio1"]');
+// const radio2Label = document.querySelector('label[for="radio2"]');
+// const radio3Label = document.querySelector('label[for="radio3"]');
 
 function handleRadioChangeTab1(id) {
   const ticketingRowDel = document.querySelector("#ticketing_row_del");
@@ -67,13 +67,13 @@ function handleRadioChangeTab1(id) {
 }
 
 function handleRadioChangeTab2(id) {
-  const roundBtn = document.querySelector(".change_depart_arrival");
+  const roundBtn = document.querySelector(".change_depart_arrival::after");
 
   if (id === "radio4") {
-    roundBtn.classList.remove("active");
+    roundBtn.style.display = "none";
   }
   if (id === "radio5") {
-    roundBtn.classList.add("active");
+    roundBtn.style.display = "block";
   }
 }
 
@@ -215,19 +215,16 @@ document.addEventListener("DOMContentLoaded", () => {
 //탭1 라디오버튼
 // 각각 클릭시 active 효과 + 라디오123 > 아래 탭 변화 + 3번(기프티켓) 클릭시 팝업/초기화면
 document.addEventListener("DOMContentLoaded", () => {
-  function setActiveRadioVisual(radioInput) {
-    const groupName = radioInput.name;
-    const group = document.querySelector(
-      `.radio-group[date-group="${groupName}"]`
-    );
+  function setActiveRadioVisual(radioId) {
+    document
+      .querySelectorAll(".radio")
+      .forEach((r) => r.classList.remove("active"));
 
-    const radios = group.querySelectorAll(".radio");
-    radios.forEach((r) => r.classList.remove("active"));
-
-    const selectedLabel = document.querySelector(
-      `label[for="${input.id}"].radio`
-    );
-    if (selectedLabel) selectedLabel.classList.add("active");
+    const label = document.querySelector(`label[for="${radioId}"]`);
+    if (label) {
+      const radioDiv = label.querySelector(".radio");
+      if (radioDiv) radioDiv.classList.add("active");
+    }
   }
 
   const radiosTab1 = document.querySelectorAll(
@@ -236,7 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   radiosTab1.forEach((radio) => {
     radio.addEventListener("change", () => {
-      setActiveRadioVisual(radio);
+      setActiveRadioVisual(radio.id);
 
       if (radio.id === "radio3") {
         handleRadioChangeTab1("radio3");
@@ -244,9 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      if (typeof handleRadioChangeTab1 === "function") {
-        handleRadioChangeTab1(radio.id);
-      }
+      handleRadioChangeTab1(radio.id);
     });
   });
 
@@ -258,6 +253,7 @@ document.addEventListener("DOMContentLoaded", () => {
       radio1.checked = true;
 
       radio1.dispatchEvent(new Event("change"));
+
       setActiveRadioVisual("radio1");
     });
   });
@@ -268,19 +264,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   radiosTab2.forEach((radio) => {
     radio.addEventListener("change", () => {
-      setActiveRadioVisual(radio);
-
-      if (typeof handleRadioChangeTab2 === "function") {
-        handleRadioChangeTab2(radio.id);
-      }
-
-      // if (radio.id === "radio5") {
-      //   changeButtonsToOneWay();
-      // }
-
-      // if (radio.id === "radio4") {
-      //   restoreButtonsToRoundtrip();
-      // }
+      setActiveRadioVisual(radio.id);
+      handleRadioChangeTab2(radio.id);
     });
   });
 });
@@ -294,3 +279,17 @@ reservenums.forEach((reservenum) => {
     reservenum.classList.add("active");
   });
 });
+
+document.querySelector("#departdate").addEventListener("click", () => {
+  openPopup("popup4");
+});
+document.querySelector("#departnum").addEventListener("click", () => {
+  openPopup("popup5");
+});
+
+// 해결안된거
+// radio group -> #radio1, #radio2, #radio3 클릭시, #radio4, #radio5 까지 영향 미침
+// clickcolors -> 동일 tab1 => tab3 까지 영향 미침
+// #radio4, #radio5 -> 클릭시 편도/왕복
+// (button class = "change_deaprt_arrival" 배경 이미지 변경안댐)
+// c
