@@ -292,4 +292,4 @@ document.querySelector("#departnum").addEventListener("click", () => {
 // clickcolors -> 동일 tab1 => tab3 까지 영향 미침
 // #radio4, #radio5 -> 클릭시 편도/왕복
 // (button class = "change_deaprt_arrival" 배경 이미지 변경안댐)
-// c
+//
