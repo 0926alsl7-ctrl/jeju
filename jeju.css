@@ -16,6 +16,7 @@
   font-weight: 900;
   font-style: normal;
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -547,25 +548,16 @@ main {
   margin: 0 30px;
   cursor: pointer;
   border: 0;
-  background-color: transparent;
-}
-
-.change_depart_arrival::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 36px;
-  height: 36px;
-  border: 0;
   border-radius: 100%;
+  background-color: transparent;
   background: url(images/reserve_step1_icon.png) no-repeat;
   background-position: 0 -88px;
   background-size: 605px;
   cursor: pointer;
   z-index: 5;
 }
-.change_depart_arrival:hover::before {
+
+.change_depart_arrival:hover {
   background: url(images/reserve_step1_icon.png) no-repeat;
   width: 36px;
   height: 36px;
@@ -574,22 +566,18 @@ main {
   background-size: 605px;
   z-index: 10;
 }
-/* /* .hidden_change_depart_arrival {
-  order: 2;
-  width: 36px;
-  height: 36px;
-  border: 0;
-  background: url(images/icon_one_way.png) no-repeat;
-  background-position: 0 0;
-  background-size: 36px auto;
-  cursor: pointer;
-  border: 0;
-  z-index: 100;
-  display: none;
- background-color: white;
-} */
 
-.ticket #departdate,
+.round-active {
+  background-position: 0 0 !important;
+  background: url(images/icon_one_way.png) no-repeat !important;
+  background-size: 36px auto !important;
+}
+.round-active:hover {
+  background-position: 0 0 !important;
+  background: url(images/icon_one_way_hover.png) !important;
+}
+
+.ticket .departdate,
 #departnum {
   width: 100%;
   height: 50px;
@@ -1118,37 +1106,336 @@ article .article_inner {
   font-size: 16px;
   color: #333;
   letter-spacing: normal;
-}
-.article1_content {
-  overflow: hidden;
-  margin-left: 4px;
-}
-.article1_content .swiper {
-  width: 100%;
-  height: 144px;
-  margin-right: auto;
-  position: relative;
-  overflow: hidden;
-  padding: 0;
-  z-index: 1;
   cursor: pointer;
 }
+.title_side:hover {
+  cursor: pointer;
+  font-weight: 700;
+}
+.article1_content {
+  margin-left: 4px;
+}
+.slider-wrapper {
+  width: 960px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  margin: 0 auto;
+}
+.swiper {
+  overflow: hidden;
+}
 .swipes {
-  width: 500% !important;
-  height: 144px;
   display: flex;
+  gap: 12px;
   transition: transform 0.5s ease;
 }
 .swipe {
-  border-radius: 10px;
   width: 320px;
   height: 140px;
-  position: relative;
+  flex-shrink: 0;
+  border-radius: 10px;
   background-position: 0;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.slide-next,
+.slide-prev {
+  display: block;
+  position: absolute;
+  border: 0;
+  top: 120px;
+  width: 52px;
+  height: 52px;
+  z-index: 10;
+  cursor: pointer;
+}
+.slide-next {
+  right: -5px;
+  background: url(images/arrow_carousel_prev_03.png) 0 0 no-repeat;
+}
+
+.slide-prev {
+  left: -5px;
+  background: url(images/arrow_carousel_prev_03.png) 0 0 no-repeat;
+  transform: rotate(180deg);
+}
+.sw_banner {
+  padding: 20px;
+  width: 100%;
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 20px;
+  letter-spacing: normal;
+  color: #000 !important;
+  font-weight: 600;
+  display: flex;
+  justify-content: left;
+}
+.sw7 .sw_banner,
+.sw10 .sw_banner,
+.sw13 .sw_banner {
+  color: #fff !important;
 }
 .sw1 {
   background: url(images/20251117130508880.avif) no-repeat;
   background-size: 100%;
+}
+.sw2 {
+  background: url(images/20251118105201487.avif) no-repeat;
+  background-size: 100%;
+}
+.sw3 {
+  background: url(images/20251113174117849.avif) no-repeat;
+  background-size: 100%;
+}
+.sw4 {
+  background: url(images/20251110093301362.avif) no-repeat;
+  background-size: 100%;
+}
+.sw5 {
+  background: url(images/20250808095154163.avif) no-repeat;
+  background-size: 100%;
+}
+.sw6 {
+  background: url(images/20251021134506661.avif) no-repeat;
+  background-size: 100%;
+}
+.sw7 {
+  background: url(images/20251030104624147.avif) no-repeat;
+  background-size: 100%;
+}
+.sw8 {
+  background: url(images/20250910080916592.avif) no-repeat;
+  background-size: 100%;
+}
+.sw9 {
+  background: url(images/20250910075905370.avif) no-repeat;
+  background-size: 100%;
+}
+.sw10 {
+  background: url(images/20250731084230980.avif) no-repeat;
+  background-size: 100%;
+}
+.sw11 {
+  background: url(images/20250731072421430.avif) no-repeat;
+  background-size: 100%;
+}
+.sw12 {
+  background: url(images/20250801113856250.avif) no-repeat;
+  background-size: 100%;
+}
+.sw13 {
+  background: url(images/20250731072516148.avif) no-repeat;
+  background-size: 100%;
+}
+.sw14 {
+  background: url(images/20250804154742985.avif) no-repeat;
+  background-size: 100%;
+}
+.sw15 {
+  background: url(images/20250731084902949.avif) no-repeat;
+  background-size: 100%;
+}
+.page {
+  width: 100%;
+  border: 0;
+}
+.page ul {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  margin-top: 30px;
+}
+.page li {
+  background-color: #4c4c4c;
+  opacity: 0.3;
+  width: 5px;
+  height: 5px;
+  border: 0;
+  border-radius: 50%;
+  display: block;
+}
+.page li.active {
+  opacity: 1;
+  width: 12px;
+  border-radius: 3px;
+  background-color: #ff8300;
+}
+.article2 .sub_title_wrap {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+  box-sizing: content-box;
+}
+.sub_title {
+  border: 0;
+  height: 30px;
+  cursor: pointer;
+  padding: 0 18px;
+  background-color: #f2f2f2;
+  border-radius: 15px;
+  display: inline-block;
+  text-align: center;
+  align-content: center;
+  font-size: 16px;
+  letter-spacing: normal;
+  color: #888;
+  line-height: 27px;
+  white-space: nowrap;
+}
+.sub_title.active {
+  background-color: #ff5000;
+  color: #fff !important;
+}
+.tab2 {
+  display: none;
+}
+.tab2.show {
+  margin-top: 32px;
+  display: flex;
+}
+
+.article2_left {
+  position: relative;
+  cursor: pointer;
+  border: 0;
+  box-sizing: border-box;
+  border-radius: 8px;
+  width: 664px;
+  height: 230px;
+  background-size: 100% !important;
+  background-position: 50%;
+  background: url(images/section_travel_t1_01.avif) no-repeat;
+}
+#article2_tab2 .article2_left {
+  background: url(images/section_travel_t2_01.avif) no-repeat;
+}
+#article2_tab3 .article2_left {
+  background: url(images/section_travel_t3_01.avif) no-repeat;
+}
+.article2_left_banner {
+  cursor: pointer;
+  position: absolute;
+  left: 30px;
+  top: 35%;
+  color: #fff !important;
+}
+.article2_left_banner .article2_left_subtitle {
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-weight: 700;
+  line-height: 21px;
+}
+.article2_left_banner .article2_left_subtitle_content {
+  font-size: 16px;
+  letter-spacing: normal;
+  margin-bottom: 10px;
+}
+.article2_right {
+  margin-left: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.article2_right h2 {
+  display: flex;
+  cursor: pointer;
+}
+.article2_right span {
+  margin-top: 20px;
+  margin-left: 14px;
+  font-size: 20px;
+  letter-spacing: normal;
+  font-weight: 700;
+  line-height: 21px;
+}
+.article2_right p {
+  font-size: 16px;
+  margin-top: 5px;
+  color: #333;
+}
+.article2_right img {
+  border-radius: 8px;
+  width: 110px;
+  height: 110px;
+}
+.article3 {
+  margin-top: 80px;
+}
+.slider-wrapper3 {
+  width: 1000px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.siwper3 {
+  overflow: hidden;
+}
+
+.swipes3 {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.5s ease;
+}
+
+.swipe3 {
+  position: relative;
+  width: 490px;
+  height: 140px;
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.sw31 {
+  background: #ffd5b4;
+}
+.sw32 {
+  background: #dacbff;
+}
+.sw33 {
+  background: #ffc5c5;
+}
+.sw34 {
+  background: #b8e3ff;
+}
+
+.swipe3 img {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 100px;
+  height: 100px;
+}
+.sw_banner3 {
+  width: fit-content;
+  margin-left: 30px;
+  margin-top: 0;
+  height: 140px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+.sw_banner3 span {
+  width: 100%;
+  font-size: 20px;
+  font-weight: 700;
+  color: #333;
+  overflow: hidden;
+  text-align: left;
 }
 .popup_bg {
   background-color: #0006;

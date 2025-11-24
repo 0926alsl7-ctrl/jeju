@@ -318,15 +318,15 @@
         </div>
         <div class="ticket">
           <h2 class="reserves">
-            <p class="reserve active" data-tab="tab1" >항공권 예매</p>
-            <p class="reserve" data-tab="tab2">예약 조회</p>
-            <p class="reserve" data-tab="tab3">운항 조회</p>
+            <p class="reserve tab1 active" data-tab="tab1" >항공권 예매</p>
+            <p class="reserve tab2" data-tab="tab2">예약 조회</p>
+            <p class="reserve tab3" data-tab="tab3">운항 조회</p>
           </h2>
           <ul id="tab1" class="tab show">
             <li class="clickcolors">
               <a href="#" class="clickcolor active">왕복</a>
-              <a href="#" class="clickcolor" style="margin-left: 18px">편도</a>
-              <a href="#" class="clickcolor" style="margin-left: 18px"
+              <a href="#" class="clickcolor" id="date_change" style="margin-left: 18px">편도</a>
+              <a href="#" class="clickcolor" id="date_change" style="margin-left: 18px"
                 >다구간</a
               >
             </li>
@@ -336,7 +336,7 @@
                 <button class="change_depart_arrival"></button>
                 <a href="#" class="arrival" data-tab="arrival">도착지</a>
               </div>
-              <button id="departdate">
+              <button class="departdate">
                 <span class="departdate_txt"></span>
               </button>
               <button id="departnum">
@@ -437,18 +437,18 @@
           </ul>
           <ul id="tab3" class="tab">
             <li class="clickcolors" style="margin-bottom: 30px">
-              <a href="#" class="clickcolor active">운항 스케줄</a>
-              <a href="#" class="clickcolor" style="margin-left: 18px"
+              <a href="#" class="clickcolor active" id="#clickcolors tab3">운항 스케줄</a>
+              <a href="#" class="clickcolor" id="#clickcolors tab3" style="margin-left: 18px"
                 >출도착 현황</a
               >
             </li>
             <li class="ticketing_row2" style="margin-top: 20px">
               <input type="radio" name="point2" id="radio4" checked /><label
                 for="radio4"
-                ><div class="radio"></div>
+                ><div class="radio active"></div>
                 <p>왕복</p></label
               >
-              <input type="radio" name="point2" id="radio5" /><label for="radio5"
+              <input type="radio" name="point2" id="radio5" /><label for="radio5" id="date_change"
                 ><div class="radio"></div>
                 <p>편도</p></label
               >
@@ -463,7 +463,7 @@
                 </button>
                 <a href="#" class="arrival" data-tab="arrival">도착지</a>
               </div>
-              <button id="departdate">
+              <button class="departdate">
                 <span class="departdate_txt"></span>
               </button>
               <button id="search">조회</button>
@@ -510,74 +510,177 @@
           <span class="title_side">전체보기</span>
         </h3>
         <div class="article1_content">
+        <button class="slide-prev"></button>
+                 <button class="slide-next"></button>
+        <div class="slider-wrapper">
           <div class="swiper">
             <div class="swipes">
               <a href="#" class="swipe sw1">
-                <h2 class="sw_banner"></h2>
+                <h2 class="sw_banner">봄 성수기 항공권<br>최대 86% 할인!</h2>
               </a>
               <a href="#" class="swipe sw2">
-                <h2 class="sw_banner"></h2>
+                <h2 class="sw_banner">필리핀 메가세일<br>최대 15% 할인혜택</h2>
               </a>
               <a href="#" class="swipe sw3">
-                <h2 class="sw_banner"></h2>
+                <h2 class="sw_banner">따끈따끈<br>일본 항공권 특가 오픈!</h2>
               </a>
               <a href="#" class="swipe sw4">
-                <h2 class="sw_banner"></h2>
+                <h2 class="sw_banner">수험생도 동반자도<br>모두 국내선 20% 할인!</h2>
               </a>
               <a href="#" class="swipe sw5">
-                <h2 class="sw_banner"></h2>
+                <h2 class="sw_banner">매일 선착순<br>최대 25,000원 즉시할인!</h2>
               </a>
               <a href="#" class="swipe sw6">
-                <h2 class="sw_banner"></h2>
+                <h2 class="sw_banner">비즈니스 라이트 타고<br>교보문고 sam 혜택 받기!</h2>
               </a>
               <a href="#" class="swipe sw7">
-                <h2 class="sw_banner"></h2>
+                <h2 class="sw_banner">후쿠오카 호텔<br>크로스라이프 15% 할인</h2>
               </a>
               <a href="#" class="swipe sw8">
-                <h2 class="sw_banner"></h2>
+                <h2 class="sw_banner">싱가포르 Aloft 호텔<br>최대 10% 할인</h2>
               </a>
               <a href="#" class="swipe sw9">
-                <h2 class="sw_banner"></h2>
+                <h2 class="sw_banner">싱가포르 센토사<br>무료 혜택</h2>
               </a>
               <a href="#" class="swipe sw10">
-                <h2 class="sw_banner"></h2>
+                <h2 class="sw_banner">제주항공X라쿠텐트래블<br>일본 숙소 할인</h2>
               </a>
               <a href="#" class="swipe sw11">
-                <h2 class="sw_banner"></h2>
+                <h2 class="sw_banner">센토사 FUNPASS<br>제휴 20% 할인</h2>
               </a>
               <a href="#" class="swipe sw12">
-                <h2 class="sw_banner"></h2>
+                <h2 class="sw_banner">싱가포르 크루즈<br>다이닝크레딧 혜택</h2>
               </a>
               <a href="#" class="swipe sw13">
-                <h2 class="sw_banner"></h2>
+                <h2 class="sw_banner">싱가포르 마담 투소<br>입장권 30% 할인</h2>
               </a>
               <a href="#" class="swipe sw14">
-                <h2 class="sw_banner"></h2>
+                <h2 class="sw_banner">4대 면세점<br>제휴 혜택 안내</h2>
               </a>
               <a href="#" class="swipe sw15">
-                <h2 class="sw_banner"></h2>
+                <h2 class="sw_banner">인도네시아 발리&바탐<br>제휴처 할인 혜택!</h2>
               </a>
             </div>
           </div>
-          <div class="step_btn"></div>
+        </div>
+        <div class="page">
+          <ul>
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
         </div>
         </div>
     </article>
-    <!-- <article class="article2">
+    <article class="article2">
       <div class="article_inner">
         <h3 class="article_title">여행에 편리함을 더해보세요.
         </h3>
-        <div class="article2_content"></div>
+
+        <div class="sub_title_wrap">
+          <button class="sub_title active" data-tab2="article2_tab1">여행 전</button>
+          <button class="sub_title" data-tab2="article2_tab2">기내에서</button>
+          <button class="sub_title" data-tab2="article2_tab3">여행 동반</button>
+        </div>
+
+        <div id="article2_tab1" class="tab2 show" >
+          <div class="article2_left">
+            <div class="article2_left_banner">
+            <h3 class="article2_left_subtitle">사전 좌석</h3>
+            <p class="article2_left_subtitle_content">원하는 좌석을 예약해 보세요.</p>
+            </div>
+          </div>
+          <div class="article2_right">
+            <h2>
+            <img src="images/section_travel_t1_02.webp" alt="img">
+            <span>비즈니스 라이트<p>넓고 편안한 좌석이 준비되어<br>있어요.</p></span>
+          </h2>
+            <h2>
+            <img src="images/section_travel_t1_03.webp" alt="img">
+             <span>사전 수하물<p>현장보다 저렴하게 구매해 보<br>세요.</p></span></h2>
+          </div>
+          </div>
+
+        <div id="article2_tab2" class="tab2">
+          <div class="article2_left">
+            <div class="article2_left_banner">
+            <h3 class="article2_left_subtitle">사전 기내식</h3>
+            <p class="article2_left_subtitle_content">특별한 메뉴들이 준비되어 있어요.</p>
+            </div>
+          </div>
+          <div class="article2_right">
+            <h2>
+            <img src="images/section_travel_t2_02.webp" alt="img">
+            <span>에어카페 & 설렘배송<p>다양한 상품들을 만나보세요.</p></span>
+          </h2>
+            <h2>
+            <img src="images/section_travel_t2_03.webp" alt="img">
+             <span>기내 면세품 사전 주문<p>원하는 면세품을 기내에서 받<br>아보세요.</p></span></h2>
+          </div>
+          </div>
+          
+        <div id="article2_tab3" class="tab2">
+          <div class="article2_left">
+            <div class="article2_left_banner">
+            <h3 class="article2_left_subtitle">여행자 보험</h3>
+            <p class="article2_left_subtitle_content">안전한 여행을 위해 준비해 보세요.</p>
+            </div>
+          </div>
+          <div class="article2_right">
+            <h2>
+            <img src="images/section_travel_t3_02.webp" alt="img">
+            <span>자전거 케이스<p>특별한 자전거 여행을 떠나보<br>세요.</p></span>
+          </h2>
+            <h2>
+            <img src="images/section_travel_t3_03.webp" alt="img">
+             <span>실시간 골프 예약<p>여행과 골프를 함께 즐겨보세<br>요.</p></span></h2>
+          </div>
+          </div>
+
         </div>
     </article>
     <article class="article3">
       <div class="article_inner">
         <h3 class="article_title">J 멤버스 전용 혜택을 만나보세요.
         </h3>
-        <div class="article3_content"></div>
+        <div class="article3_content">
+          <button class="slide-prev"></button>
+          <button class="slide-next"></button>
+        <div class="slider-wrapper3">
+          <div class="swiper3">
+            <div class="swipes3">
+              <a href="#" class="swipe3 sw31">
+                <h2 class="sw_banner3"><span>J 멤버스 등급제도 개편</span>#더욱 강력해진 등급별 혜택</h2>
+                <img src="images/section_member_01.png" alt="img">
+              </a>
+              <a href="#" class="swipe3 sw32">
+                <h2 class="sw_banner3"><span>떠날수록 쌓이는 J 포인트</span>#포인트로 떠나는 여행</h2>
+                <img src="images/section_member_02.png" alt="img">
+              </a>
+              <a href="#" class="swipe3 sw33">
+                <h2 class="sw_banner3"><span>제주항공 멤버십 혜택전</span>#스포츠 매니아 #골프 여행 #반려동물과 함께</h2>
+                <img src="images/section_member_03.png" alt="img">
+              </a>
+              <a href="#" class="swipe3 sw34">
+                <h2 class="sw_banner3"><span>쉽고 간편한 여행의 시작, 기프티켓</span>#여행을 선물해 보세요.</h2>
+                <img src="images/section_member_04.png" alt="img">
+              </a>
+               </div>
+              </div>
+        </div>
+        <div class="page">
+          <ul>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+        </div>
         </div>
     </article>   
-     <article class="article4">
+     <!-- <article class="article4">
       <div class="article_inner">
         <h3 class="article_title">지금 뜨는 인기 노선을 확인해 보세요.
           <span class="title_side">*1인 편도총액 기준</span>
