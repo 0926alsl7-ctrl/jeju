@@ -1437,6 +1437,31 @@ article .article_inner {
   overflow: hidden;
   text-align: left;
 }
+.page3 {
+  width: 100%;
+  border: 0;
+}
+.page3 ul {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  margin-top: 30px;
+}
+.page3 li {
+  background-color: #4c4c4c;
+  opacity: 0.3;
+  width: 5px;
+  height: 5px;
+  border: 0;
+  border-radius: 50%;
+  display: block;
+}
+.page3 li.active {
+  opacity: 1;
+  width: 12px;
+  border-radius: 3px;
+  background-color: #ff8300;
+}
 .popup_bg {
   background-color: #0006;
   width: 100%;
