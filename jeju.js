@@ -1,7 +1,6 @@
 /// <reference path="./jquery.d.ts" />
 
-// (1) 팝업 OPEN / CLOSE
-
+// (0) 팝업 OPEN / CLOSE 함수 - openPopup / closePopup
 function openPopup(popupId) {
   const bg = document.querySelector(".popup_bg");
   const popup = document.getElementById(popupId);
@@ -20,8 +19,18 @@ function closePopup(popupId) {
   document.body.style.overflow = "";
 }
 
-// (2) Radio 클릭시 내용 change
+// (0) Group 밖 클릭시 active 초기화 - removeActiveOutside
+function removeActiveOutside(GroupSelector) {
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(GroupSelector)) {
+      document
+        .querySelectorAll(`${GroupSelector} .active`)
+        .forEach((el) => el.classList.remove("active"));
+    }
+  });
+}
 
+// (0) Tab1 - 라디오 클릭시 동작
 function handleRadioChangeTab1(id) {
   const ticketingRowDel = document.querySelector("#ticketing_row_del");
   const ticketingRowHeight = document.querySelector("#ticketing_row_heightup");
@@ -55,33 +64,87 @@ function handleRadioChangeTab1(id) {
   }
 }
 
-function handleRadioChangeTab2(id) {
+// (0) Tab3 - 라디오 클릭시 동작
+function handleRadioChangeTab3(id) {
+  const departdate = document.querySelectorAll(".departdate_txt");
+  const today = new Date();
+
   if (id === "radio4") {
     $(".change_depart_arrival").removeClass("round-active");
+    updateDefaultDate();
   }
   if (id === "radio5") {
     $(".change_depart_arrival").addClass("round-active");
+    departdate.forEach((el) => (el.textContent = `${formatDate(today)}`));
   }
 }
 
-// group 밖 클릭 시 active 초기화
-function removeActiveOutside(GroupSelector) {
-  document.addEventListener("click", (e) => {
-    if (!e.target.closest(GroupSelector)) {
-      document
-        .querySelectorAll(`${GroupSelector} .active`)
-        .forEach((el) => el.classList.remove("active"));
-    }
-  });
+// (0) Tab3 - 라디오 이름 변화
+function resetTab3RadioNames() {
+  document.querySelector('label[for="radio4"] .label-text').textContent =
+    "왕복";
+  document.querySelector('label[for="radio5"] .label-text').textContent =
+    "편도";
+}
+function changeTab3RadioNames() {
+  document.querySelector('label[for="radio4"] .label-text').textContent =
+    "구간조회";
+  document.querySelector('label[for="radio5"] .label-text').textContent =
+    "편명조회";
 }
 
-// (3) 탑배너 close
+// (0) Tab1 Clickcolor 기능 - handleTab1ClickColor
+function handleTab1ClickColor(type) {
+  if (type === "왕복") {
+    document.getElementById("radio1").checked = "true";
+    document.getElementById("radio1").dispatchEvent(new Event("change"));
+  }
+  if (type === "편도") {
+    document.getElementById("radio2").checked = "true";
+    document.getElementById("radio2").dispatchEvent(new Event("change"));
+  }
+  if (type === "다구간") {
+    document.getElementById("radio3").checked = "true";
+    document.getElementById("radio3").dispatchEvent(new Event("change"));
+  }
+}
+
+// (0) Tab3 Clickcolor 기능 - handleTab3ClickColor
+function handleTab3ClickColor(type) {
+  const departdate = document.querySelectorAll(".departdate_txt");
+  const today = new Date();
+
+  if (type === "운항 스케줄") {
+    $(".change_depart_arrival").removeClass("round-active");
+    updateDefaultDate();
+    resetTab3RadioNames();
+  }
+
+  if (type === "출도착 현황") {
+    $(".change_depart_arrival").addClass("round-active");
+    departdate.forEach((el) => (el.textContent = `${formatDate(today)}`));
+    changeTab3RadioNames();
+  }
+}
+
+// (0) 멀티(다구간) 표시
+function showMulti() {
+  const m = document.querySelector(".multi-section");
+  if (m) m.style.display = "grid";
+}
+
+function hideMulti() {
+  const m = document.querySelector(".multi-section");
+  if (m) m.style.display = "none";
+}
+
+// (1) 탑배너 close
 document.querySelector(".close").addEventListener("click", function () {
   document.querySelector(".topbanner").style.display = "none";
   document.querySelector("header").style.height = "110px";
 });
 
-// (4) 슬라이드
+// (2) 메인 슬라이드
 document.addEventListener("DOMContentLoaded", () => {
   const slides = document.querySelector(".slides");
   const slide = document.querySelectorAll(".slide");
@@ -129,19 +192,32 @@ document.addEventListener("DOMContentLoaded", () => {
   goToSlide(0);
 });
 
-// (5) clickcolors (tab1 / tab3 클릭시 내부 독립 작동)
-document.querySelectorAll(".tab").forEach((tab) => {
-  tab.addEventListener("click", (e) => {
-    if (e.target.matches(".clickcolor")) {
-      tab.querySelectorAll(".clickcolor").forEach((btn) => {
-        btn.classList.remove("active");
-      });
-      e.target.classList.add("active");
-    }
-  });
+// (3) clickcolors (tab1 / tab3 각각 독립 작동)
+document.querySelector("#tab1 .clickcolors")?.addEventListener("click", (e) => {
+  if (!e.target.classList.contains("clickcolor")) return;
+
+  e.currentTarget
+    .querySelectorAll(".clickcolor")
+    .forEach((btn) => btn.classList.remove("active"));
+
+  e.target.classList.add("active");
+  handleTab1ClickColor(e.target.textContent.trim());
 });
 
-// (6) 탭 변경(항공권 예매 / 예약 조회 / 운항 조회)
+document.querySelector("#tab3 .clickcolors")?.addEventListener("click", (e) => {
+  if (!e.target.classList.contains("clickcolor")) return;
+
+  e.currentTarget
+    .querySelectorAll(".clickcolor")
+    .forEach((btn) => btn.classList.remove("active"));
+
+  e.target.classList.add("active");
+
+  const type = e.target.textContent.trim();
+  handleTab3ClickColor(type);
+});
+
+// (6) 탭 변경 - 항공권 예매/ 예약조회 / 운항조회
 const reserves = document.querySelectorAll(".reserve");
 const tabs = document.querySelectorAll(".tab");
 
@@ -157,34 +233,30 @@ reserves.forEach((reserve) => {
 });
 
 // (7) 예약 날짜 + 1주일 후
-window.addEventListener("DOMContentLoaded", () => {
-  const departdate = document.querySelectorAll(".departdate_txt");
+function formatDate(date) {
+  const week = ["일", "월", "화", "수", "목", "금", "토"];
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  const w = week[date.getDay()];
+  return `${y}.${m}.${d}(${w})`;
+}
 
+// 기본 날짜 세팅
+window.addEventListener("DOMContentLoaded", () => {
+  updateDefaultDate();
+});
+
+function updateDefaultDate() {
+  const departdate = document.querySelectorAll(".departdate_txt");
   const today = new Date();
   const nextWeek = new Date();
   nextWeek.setDate(today.getDate() + 7);
 
-  const week = ["일", "월", "화", "수", "목", "금", "토"];
-
-  const formatDate = (date) => {
-    const y = date.getFullYear();
-    const m = String(date.getMonth() + 1).padStart(2, "0");
-    const d = String(date.getDate()).padStart(2, "0");
-    const w = week[date.getDay()];
-    return `${y}.${m}.${d}(${w})`;
-  };
-
-  const dateText = `${formatDate(today)} ~ ${formatDate(nextWeek)}`;
-  // const dateText2 = `${formatDate(today)}`;
-
   departdate.forEach((el) => {
-    el.textContent = dateText;
+    el.textContent = `${formatDate(today)} ~ ${formatDate(nextWeek)}`;
   });
-
-  // $("#date_change").click(() => {
-  //   departdate.forEach((el) => {
-  //     el.textContent = dateText2;
-});
+}
 
 // (8) 출발/도착 버튼 > 밑줄 active
 //출발 버튼 내용 바뀌지 x -> 도착 버튼 누를시 팝업창 오픈
@@ -221,8 +293,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 removeActiveOutside(".ticketing_left");
-
-// (9) 탭1 라디오 (radio1, radio2, radio3)
+// (9) 탭1 라디오
 const tab1 = document.getElementById("tab1");
 const radiosTab1 = tab1.querySelectorAll('input[name="point"]');
 
@@ -235,14 +306,16 @@ radiosTab1.forEach((radio) => {
     if (label) label.classList.add("active");
 
     if (radio.id === "radio3") {
-      handleRadioChangeTab1("radio3");
+      handleRadioChangeTab1("다구간");
       openPopup("popup3");
       return;
     }
+
     handleRadioChangeTab1(radio.id);
   });
 });
 
+// 팝업 닫을 때 초기화
 document.querySelectorAll(".closepopup3").forEach((btn) => {
   btn.addEventListener("click", () => {
     closePopup("popup3");
@@ -253,7 +326,7 @@ document.querySelectorAll(".closepopup3").forEach((btn) => {
   });
 });
 
-// (10) 탭3 라디오 (radio4, radio5)
+// (10) 탭3 라디오
 const tab3 = document.getElementById("tab3");
 const radiosTab3 = tab3.querySelectorAll('input[name="point2"]');
 
@@ -265,7 +338,7 @@ radiosTab3.forEach((radio) => {
     const label = tab3.querySelector(`label[for="${radio.id}"] .radio`);
     if (label) label.classList.add("active");
 
-    handleRadioChangeTab2(radio.id);
+    handleRadioChangeTab3(radio.id);
   });
 });
 
@@ -282,14 +355,40 @@ reservenums.forEach((reservenum) => {
 
 removeActiveOutside(".reservenum");
 
-$(".departdate").click(() => {
-  openPopup("popup4");
-});
-$("#departnum").click(() => {
-  openPopup("popup5");
-});
+// (12) 탭1 왕복/편도/다구간
+function handleTab1ClickColor(type) {
+  const departdate = document.querySelectorAll(".departdate_txt");
+  const today = new Date();
+  const nextWeek = new Date();
+  nextWeek.setDate(today.getDate() + 7);
+  const departNum = document.querySelector("#departnum");
 
-// (12) swiper
+  if (type === "왕복") {
+    departNum.style.display = "block";
+    $(".change_depart_arrival").removeClass("round-active");
+    departdate.forEach(
+      (el) =>
+        (el.textContent = `${formatDate(today)} ~ ${formatDate(nextWeek)}`)
+    );
+    hideMulti();
+  }
+
+  if (type === "편도") {
+    departNum.style.display = "block";
+    $(".change_depart_arrival").addClass("round-active");
+    departdate.forEach((el) => (el.textContent = `${formatDate(today)}`));
+    hideMulti();
+  }
+
+  if (type === "다구간") {
+    departNum.style.display = "none";
+    $(".change_depart_arrival").addClass("round-active");
+    showMulti();
+    departdate.forEach((el) => (el.textContent = `${formatDate(today)}`));
+  }
+}
+
+// (12) article1 - swipe(next,prev 버튼/page 버튼)
 const swipes = document.querySelector(".swipes");
 const prev = document.querySelector(".slide-prev");
 const next = document.querySelector(".slide-next");
@@ -334,8 +433,9 @@ prev.addEventListener("click", () => {
 
 updatePage();
 
+// (13) article2 - tab (여행 전/기내에서/여행 동반)
 const article2SubTitles = document.querySelectorAll(".sub_title");
-const article2Tabs = document.querySelectorAll(".tab2");
+const article2Tabs = document.querySelectorAll(".tab22");
 
 article2SubTitles.forEach((btn) => {
   btn.addEventListener("click", () => {
@@ -347,4 +447,162 @@ article2SubTitles.forEach((btn) => {
     article2Tabs.forEach((tab) => tab.classList.remove("show"));
     document.getElementById(target2).classList.add("show");
   });
+});
+
+// (14) article3 - swipe(next,prev 버튼/page 버튼)
+const swipes3 = document.querySelector(".swipes3");
+const prev3 = document.querySelector(".slide-prev3");
+const next3 = document.querySelector(".slide-next3");
+const pages3 = document.querySelectorAll(".page3 li");
+
+const itemWidth3 = 490 + 20;
+const visibleCount3 = 2;
+
+let currentIndex3 = 0;
+let currentPage3 = 0;
+
+function updatePage3() {
+  pages3.forEach((p) => p.classList.remove("active"));
+  pages3[currentPage3].classList.add("active");
+
+  if (currentPage3 === 0) {
+    next3.classList.add("active");
+    prev3.classList.remove("active");
+  } else if (currentPage3 === 1) {
+    next3.classList.remove("active");
+    prev3.classList.add("active");
+  }
+}
+
+next3.addEventListener("click", () => {
+  const maxIndex3 = swipes3.children.length - visibleCount3;
+  if (currentIndex3 < maxIndex3) {
+    currentIndex3 += 2;
+    currentPage3 = Math.min(currentPage3 + 1, pages3.length - 1);
+  }
+  swipes3.style.transform = `translateX(${-currentIndex3 * itemWidth3}px)`;
+  updatePage3();
+});
+
+prev3.addEventListener("click", () => {
+  if (currentIndex3 > 0) {
+    currentIndex3 -= 2;
+    currentPage3 = Math.max(currentPage3 - 1, 0);
+  }
+  swipes3.style.transform = `translateX(${-currentIndex3 * itemWidth3}px)`;
+  updatePage3();
+});
+
+updatePage3();
+
+// (15) article4 - swipe(자동 슬라이드/next,prev 버튼)
+const swipes4 = document.querySelector(".swipes4");
+const prev4 = document.querySelector(".slide-prev4");
+const next4 = document.querySelector(".slide-next4");
+
+const itemWidth4 = 240 + 16;
+
+const items4 = [...swipes4.children];
+const originalCount4 = items4.length;
+
+for (let i = 0; i < 3; i++) {
+  items4.forEach((item) => swipes4.appendChild(item.cloneNode(true)));
+  items4.forEach((item) => swipes4.prepend(item.cloneNode(true)));
+}
+
+let currentIndex4 = originalCount4 * 3;
+swipes4.style.transform = `translateX(${-currentIndex4 * itemWidth4}px)`;
+
+function goToSlide4(index) {
+  swipes4.style.transition = "transform 0.5s ease";
+  currentIndex4 = index;
+  swipes4.style.transform = `translateX(${-currentIndex4 * itemWidth4}px)`;
+}
+
+swipes4.addEventListener("transitionend", () => {
+  if (currentIndex4 >= originalCount4 * 4) {
+    swipes4.style.transition = "none";
+    currentIndex4 = originalCount4 * 3;
+    swipes4.style.transform = `translateX(${-currentIndex4 * itemWidth4}px)`;
+  }
+
+  if (currentIndex4 < originalCount4 * 2) {
+    swipes4.style.transition = "none";
+    currentIndex4 = originalCount4 * 3 - 1;
+    swipes4.style.transform = `translateX(${-currentIndex4 * itemWidth4}px)`;
+  }
+});
+
+next4.addEventListener("click", () => {
+  goToSlide4(currentIndex4 + 1);
+});
+
+prev4.addEventListener("click", () => {
+  goToSlide4(currentIndex4 - 1);
+});
+
+setInterval(() => {
+  goToSlide4(currentIndex4 + 1);
+}, 5000);
+
+// 팝업
+
+$(".departdate").click(() => {
+  openPopup("popup4");
+});
+$("#departnum").click(() => {
+  openPopup("popup5");
+});
+$("#reservesearch").click(() => {
+  openPopup("popup6");
+});
+$("#reserve2").click(() => {
+  openPopup("popup7");
+});
+
+// 팝업 - calendar
+function renderCalendar(year, month, daysId, titleId) {
+  const title = document.getElementById(titleId);
+  const daysContainer = document.getElementById(daysId);
+
+  title.textContent = `${year}. ${String(month).padStart(2, "0")}`;
+
+  const firstDay = new Date(year, month - 1, 1);
+  const lastDate = new Date(year, month, 0).getDate();
+  const startDay = firstDay.getDay();
+
+  daysContainer.innerHTML = "";
+
+  for (let i = 0; i < startDay; i++) {
+    const empty = document.createElement("li");
+    empty.classList.add("empty");
+    daysContainer.appendChild(empty);
+  }
+
+  for (let d = 1; d <= lastDate; d++) {
+    const li = document.createElement("li");
+    li.textContent = d;
+
+    const today = new Date();
+    if (
+      today.getFullYear() === year &&
+      today.getMonth() + 1 === month &&
+      today.getDate() === d
+    ) {
+      li.classList.add("today");
+    }
+
+    li.addEventListener("click", () => {
+      const selected = daysContainer.querySelector(".selected");
+      if (selected) selected.classList.remove("selected");
+      li.classList.add("selected");
+    });
+
+    daysContainer.appendChild(li);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  renderCalendar(2025, 11, "days-11", "month-11");
+  renderCalendar(2025, 12, "days-12", "month-12");
 });

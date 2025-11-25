@@ -343,6 +343,18 @@
                 <span id="departnum_txt"> 성인1 </span>
               </button>
             </li>
+            <li class="multi-section" style="display: none;">
+                 <div class="ticketing_left">
+                <a href="#" class="depart" data-tab="depart">출발지</a>
+                <button class="change_depart_arrival"></button>
+                <a href="#" class="arrival" data-tab="arrival">도착지</a>
+              </div>
+              <button class="departdate">          
+              </button>
+              <button id="departnum2">
+                <span id="departnum2_txt"> 성인1 </span>
+              </button>
+            </li>
             <li
               class="ticketing_row"
               style="margin-top: 30px"
@@ -399,7 +411,7 @@
                 <label for="reserve1">예약번호</label>
               </li>
               <li class="reservenum-date">
-                <button id="reserve2"></button>
+                <button id="reserve2"><span>YYYY.MM.DD</</button>
                 <label for="reserve2">탑승일자</label>
               </li>
               <li class="reservenum-text">
@@ -446,11 +458,11 @@
               <input type="radio" name="point2" id="radio4" checked /><label
                 for="radio4"
                 ><div class="radio active"></div>
-                <p>왕복</p></label
+                <span class="label-text">왕복</span></label
               >
               <input type="radio" name="point2" id="radio5" /><label for="radio5" id="date_change"
                 ><div class="radio"></div>
-                <p>편도</p></label
+                <span class="label-text">편도</span></label
               >
             </li>
             <li
@@ -586,7 +598,7 @@
           <button class="sub_title" data-tab2="article2_tab3">여행 동반</button>
         </div>
 
-        <div id="article2_tab1" class="tab2 show" >
+        <div id="article2_tab1" class="tab22 show" >
           <div class="article2_left">
             <div class="article2_left_banner">
             <h3 class="article2_left_subtitle">사전 좌석</h3>
@@ -604,7 +616,7 @@
           </div>
           </div>
 
-        <div id="article2_tab2" class="tab2">
+        <div id="article2_tab2" class="tab22">
           <div class="article2_left">
             <div class="article2_left_banner">
             <h3 class="article2_left_subtitle">사전 기내식</h3>
@@ -622,7 +634,7 @@
           </div>
           </div>
           
-        <div id="article2_tab3" class="tab2">
+        <div id="article2_tab3" class="tab22">
           <div class="article2_left">
             <div class="article2_left_banner">
             <h3 class="article2_left_subtitle">여행자 보험</h3>
@@ -647,8 +659,8 @@
         <h3 class="article_title">J 멤버스 전용 혜택을 만나보세요.
         </h3>
         <div class="article3_content">
-          <button class="slide-prev"></button>
-          <button class="slide-next"></button>
+          <button class="slide-prev3"></button>
+          <button class="slide-next3 active"></button>
         <div class="slider-wrapper3">
           <div class="swiper3">
             <div class="swipes3">
@@ -680,12 +692,76 @@
         </div>
         </div>
     </article>   
-     <!-- <article class="article4">
+     <article class="article4">
       <div class="article_inner">
         <h3 class="article_title">지금 뜨는 인기 노선을 확인해 보세요.
-          <span class="title_side">*1인 편도총액 기준</span>
+          <span class="title_side4">1인 편도총액 기준</span>
         </h3>
-        <div class="article4_content"></div>
+        <div class="article4_content">
+          <button class="slide-prev4"></button>
+          <button class="slide-next4"></button>
+        <div class="slider-wrapper4">
+          <div class="swiper4">
+            <div class="swipes4">
+              <a href="#" class="swipe4 sw41">
+                <img src="images/20251119143457577.avif" alt="img">
+                <h2 class="sw_banner4">
+                  <span class="title4">서울(인천)-히로시마</span>
+                  <span class="price4">102,100<span class="unit">원 ~</span></span>
+                  <span class="date4">2025.12.15 ~ 2026.01.15</span>
+                </h2>
+              </a>
+              <a href="#" class="swipe4 sw42">
+                <img src="images/20250819175643457.avif" alt="img">
+                <h2 class="sw_banner4">
+                  <span class="title4">서울(인천)-홍콩</span>
+                  <span class="price4">149,900<span class="unit">원 ~</span></span>
+                  <span class="date4">2025.12.15 ~ 2026.01.15</span>
+                </h2>
+              </a>
+              <a href="#" class="swipe4 sw43">
+                <img src="images/20250917172602857.avif" alt="img">
+                <h2 class="sw_banner4">
+                  <span class="title4">부산-상하이(푸동)</span>
+                  <span class="price4">96,100<span class="unit">원 ~</span></span>
+                  <span class="date4">2025.12.15 ~ 2026.01.31</span>
+                </h2>
+              </a>
+              <a href="#" class="swipe4 sw44">
+                <img src="images/20251119143635230.avif" alt="img">
+                <h2 class="sw_banner4">
+                  <span class="title4">서울(인천)-다낭</span>
+                  <span class="price4">102,900<span class="unit">원 ~</span></span>
+                  <span class="date4">2025.12.15 ~ 2026.01.15</span>
+                </h2>
+              </a>
+              <a href="#" class="swipe4 sw45">
+                <img src="images/20251105184551856.avif" alt="img">
+                <h2 class="sw_banner4">
+                  <span class="title4">서울(인천)-비엔티안(왓따이)</span>
+                  <span class="price4">121,800<span class="unit">원 ~</span></span>
+                  <span class="date4">2025.12.15 ~ 2026.01.15</span>
+                </h2>
+              </a>
+              <a href="#" class="swipe4 sw46">
+                <img src="images/20251112165020903.avif" alt="img">
+                <h2 class="sw_banner4">
+                  <span class="title4">김포-제주</span>
+                  <span class="price4">16,600<span class="unit">원 ~</span></span>
+                  <span class="date4">2025.12.15 ~ 2025.12.31</span>
+                </h2>
+              </a>
+              <a href="#" class="swipe4 sw47">
+                <img src="images/20251119144450596.avif" alt="img">
+                <h2 class="sw_banner4">
+                  <span class="title4">대구-세부</span>
+                  <span class="price4">118,900<span class="unit">원 ~</span></span>
+                  <span class="date4">2025.12.17 ~ 2026.01.15</span>
+                </h2>
+              </a>
+        </div>
+        </div>
+        </div>
         </div>
     </article>
      <article class="article5">
@@ -695,12 +771,13 @@
         </h3>
         <div class="article5_content">
    <ul>
-            <li><img src="" alt=""><a href="#">렌터카</a></li>
-            <li><img src="" alt=""><a href="#">호텔/숙소</a></li>
-            <li><img src="" alt=""><a href="#">금융/여행자 보험</a></li>
-            <li><img src="" alt=""><a href="#">골프/투어</a></li>
+            <li><img src="images/section_discount_02.webp" alt="section"><a href="#">렌터카</a></li>
+            <li><img src="images/section_discount_01.webp" alt="section"><a href="#">호텔/숙소</a></li>
+            <li><img src="images/section_discount_03.webp" alt="section"><a href="#">금융/여행자 보험</a></li>
+            <li><img src="images/section_discount_04.webp" alt="section"><a href="#">골프/투어</a></li>
           </ul></div>
         </div>
+        </article>
      <article class="article6">
       <div class="article_inner">
         <h3 class="article_title">공지사항을 확인해 주세요.
@@ -710,11 +787,11 @@
         <div class="article6_content">
    <ul>
             <li><a href="#">타이베이/가오슝 온라인입국신고서 안내</a></li>
-            <li><a href="#">국내선 유류할증료 (2025년 11월)</a></li>
-            <li><a href="#">[한국 출발] 국제선 유류할증료 (2025년 11월)</a></li>
+            <li><a href="#">국내선 유류할증료 (2025년 <span>11</span>월)</a></li>
+            <li><a href="#">[한국 출발] 국제선 유류할증료 (2025년 <span>11</span>월)</a></li>
           </ul></div>
         </div>
-    </article> -->
+    </article>
     <footer>
              <div class="footer_inner">
       <div class="footer_row1">
@@ -730,7 +807,7 @@
           <li class="li_header"><a href="#">약관 및 안내</a></li>
           <li><a href="#">이용약관</a></li>
           <li><a href="#">운송약관 및 기타</a></li>
-          <li><a href="#">개인정보처리방침</a></li>
+          <li><a href="#"><span>개인정보처리방침</span></a></li>
         </ul>
         <ul>
           <li class="li_header"><a href="#">기타 안내</a></li>
@@ -744,6 +821,7 @@
           <li class="li_header"><a href="#">마케팅/제휴</a></li>
           <li><a href="#">광고 및 제휴 문의</a></li>
           <li><a href="#">이메일 무단 수집 거부</a></li>
+          <li><a href="#">에듀윙</a></li>
         </ul>
         <ul>
           <li class="li_header"><a href="#">기업/여행사 서비스</a></li>
@@ -757,13 +835,30 @@
         </ul>
       </div>
       <div class="footer_row2">
+        <div class="footer_row2_left">
         <ul>
           <li class="li_header"><a href="#">(주)제주항공</a></li>
           <li><a href="#">대표이사 : 김이배</a><a href="#">사업자등록번호 : 616-81-50527</a><a href="#">통신판매업신고 : 제주2006-125호</a><a href="#">호스팅 사업자 : AWS</a></li>
           <li><a href="#">주소 : 제주특별자치도 제주시 신대로 64 (연동, 건설공제회관 3층)</a><a href="#">고객센터 : 1599-1500 (09:00 ~ 19:00)</a></li>
           <li><a href="#">고객 문의 : jejuair.help@jejuair.net</a><a href="#">제휴 문의 : partnership@jejuair.net</a></li>
-          <li><a href="#">Copyright ⓒ Jeju Air. All Rights Reserved.</a></li>
+          <li class="copy"><a href="#">Copyright ⓒ Jeju Air. All Rights Reserved.</a></li>
         </ul>
+        </div>
+        <div class="footer_row2_right">
+            <ul class="sns">
+              <li><a href="https://www.youtube.com/@jejuair_official"><img src="images/20250804165831645.png" alt="sns"></a></li>
+              <li><a href="https://www.instagram.com/jejuair_official"><img src="images/20250804165841751.png" alt="sns"></a></li>
+              <li><a href="https://www.tiktok.com/@jejuair_official"><img src="images/20250804165850759.png" alt="sns"></a></li>
+              <li><a href="https://www.facebook.com/funjejuair/"><img src="images/20250804165859889.png" alt="sns"></a></li>
+            </ul>
+            <ul class="qr">
+              <li>앱을 다운로드하고<br>
+앱전용 혜택을<br>
+받아보세요!
+</li>
+              <li><img src="images/icon-app-down-qr.png" alt="qr"></li>
+            </ul>
+        </div>
       </div>
       </div>
     </footer>
@@ -794,18 +889,65 @@
         <button id="checkpopup3" class="closepopup3">확인</button></div>
       </div>
     </div>
-        <div id="popup4" class="popup">
+    <div id="popup4" class="popup">
       <div class="popup_inner">
         <button class="closepopup4" onclick="closePopup('popup4')"></button>
         <p>여정을 선택하세요.</p>
         <button class="checkpopup4" onclick="closePopup('popup4')">확인</button>
       </div>
     </div>
-        <div id="popup5" class="popup">
+    <div id="popup5" class="popup">
       <div class="popup_inner">
         <button class="closepopup5" onclick="closePopup('popup5')"></button>
         <p>여정 및 일정을 선택하세요.</p>
         <button class="checkpopup5" onclick="closePopup('popup5')">확인</button>
+      </div>
+    </div>
+    <div id="popup6" class="popup">
+      <div class="popup_inner">
+        <button class="closepopup6" onclick="closePopup('popup6')"></button>
+        <p>날짜를 선택해주세요.</p>
+        <button class="checkpopup6" onclick="closePopup('popup6')">확인</button>
+      </div>
+    </div>
+    <div id="popup7">
+      <div class="popup_inner">
+        <div class="popup7_header">
+          <p>날짜를 선택해주세요.</p>
+          <button class="closepopup7" onclick="closePopup('popup7')"></button>
+        </div>
+        <div class="popup7_content">
+          <div class="calendar">
+            <div class="month" id="month-11"></div>
+            <ul class="week">
+              <li>일</li>
+              <li>월</li>
+              <li>화</li>
+              <li>수</li>
+              <li>목</li>
+              <li>금</li>
+              <li>토</li>
+            </ul>
+            <ul class="days" id="days-11"></ul>
+          </div>
+          <div class="calendar">
+            <div class="month" id="month-12"></div>
+                <ul class="week">
+              <li>일</li>
+              <li>월</li>
+              <li>화</li>
+              <li>수</li>
+              <li>목</li>
+              <li>금</li>
+              <li>토</li>
+            </ul>
+            <ul class="days" id="days-12"></ul>
+          </div>
+        </div>
+        <div class="popup7_btn">
+        <button class="resetpopup7" onclick="closePopup('popup7')">초기화</button>
+        <button class="selectpopup7" onclick="closePopup('popup7')">선택</button>
+        </div>
       </div>
     </div>
   </body>
