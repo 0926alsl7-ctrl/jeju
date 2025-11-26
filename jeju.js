@@ -338,9 +338,42 @@ radiosTab3.forEach((radio) => {
     const label = tab3.querySelector(`label[for="${radio.id}"] .radio`);
     if (label) label.classList.add("active");
 
-    handleRadioChangeTab3(radio.id);
+    const isShedule =
+      document.querySelector("#tab3 .clickcolor.active").textContent.trim() ===
+      "운항 스케줄";
+
+    if (isShedule) {
+      handleRadioChangeTab3(radio.id);
+    }
   });
 });
+
+// (10-1) 탭3 라디오 클릭 아래 탭 전환
+const tab3Radios = document.querySelectorAll("#tab3 input[type='radio']");
+const tab3Screens = document.querySelectorAll("#tab3 .tab3-screen");
+
+tab3Radios.forEach((radio) => {
+  radio.addEventListener("change", () => {
+    const isShedule =
+      document.querySelector("#tab3 .clickcolor.active").textContent.trim() ===
+      "출도착 현황";
+
+    if (isShedule) {
+      const target = radio.dataset.target;
+
+      tab3Screens.forEach((screen) => {
+        screen.classList.toggle(
+          "active",
+          screen.id === target.replace("#", "")
+        );
+      });
+    }
+  });
+});
+
+document.querySelector(
+  "#departdate_txt-tab3-screen"
+).textContent = `${formatDate(today)}`;
 
 // (11) 탭2 예약번호 active
 const reservenums = document.querySelectorAll(".reservenum li");
@@ -547,6 +580,11 @@ setInterval(() => {
 
 // 팝업
 
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelector("#popup8").display = "block";
+  document.querySelector(".popup_bg").display = "block";
+});
+
 $(".departdate").click(() => {
   openPopup("popup4");
 });
@@ -557,52 +595,88 @@ $("#reservesearch").click(() => {
   openPopup("popup6");
 });
 $("#reserve2").click(() => {
-  openPopup("popup7");
+  document.querySelector("#popup7").display = "block";
+  document.querySelector(".popup_bg").display = "block";
 });
 
 // 팝업 - calendar
-function renderCalendar(year, month, daysId, titleId) {
-  const title = document.getElementById(titleId);
-  const daysContainer = document.getElementById(daysId);
+function renderCalendar(year, month, monthId, daysId) {
+  const monthNames = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+  ];
+  const monthDiv = document.getElementById(monthId);
+  const daysUl = document.getElementById(daysId);
 
-  title.textContent = `${year}. ${String(month).padStart(2, "0")}`;
+  monthDiv.innerText = `${year}. ${monthNames[month]}`;
+  daysUl.innerHTML = "";
 
-  const firstDay = new Date(year, month - 1, 1);
-  const lastDate = new Date(year, month, 0).getDate();
-  const startDay = firstDay.getDay();
+  let firstDay = new Date(year, month, 1).getDay();
+  let lastDate = new Date(year, month + 1, 0).getDate();
 
-  daysContainer.innerHTML = "";
+  const today = new Date();
 
-  for (let i = 0; i < startDay; i++) {
-    const empty = document.createElement("li");
-    empty.classList.add("empty");
-    daysContainer.appendChild(empty);
+  for (let i = 0; i < firstDay; i++) {
+    let li = document.createElement("li");
+    daysUl.appendChild(li);
   }
 
   for (let d = 1; d <= lastDate; d++) {
-    const li = document.createElement("li");
-    li.textContent = d;
+    let li = document.createElement("li");
+    let span = document.createElement("span");
+    span.textContent = d;
+    li.appendChild(span);
 
-    const today = new Date();
+    let dateObj = new Date(year, month, d);
+    let dayIndex = dateObj.getDay();
+
+    if (dayIndex === 0) li.classList.add("sunday");
+
     if (
-      today.getFullYear() === year &&
-      today.getMonth() + 1 === month &&
-      today.getDate() === d
+      year === today.getFullYear() &&
+      month === today.getMonth() &&
+      d === today.getDate()
     ) {
       li.classList.add("today");
     }
 
-    li.addEventListener("click", () => {
-      const selected = daysContainer.querySelector(".selected");
-      if (selected) selected.classList.remove("selected");
-      li.classList.add("selected");
-    });
+    if (dateObj < today.setHours(0, 0, 0, 0)) {
+      li.classList.add("disabled");
+    } else {
+      li.addEventListener("click", () => {
+        document
+          .querySelectorAll(".days li")
+          .forEach((el) => el.classList.remove("active"));
 
-    daysContainer.appendChild(li);
+        li.classList.add("active");
+      });
+    }
+    daysUl.appendChild(li);
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  renderCalendar(2025, 11, "days-11", "month-11");
-  renderCalendar(2025, 12, "days-12", "month-12");
-});
+function renderTwoMonths() {
+  const now = new Date();
+
+  renderCalendar(now.getFullYear(), now.getMonth(), "month-11", "days-11");
+
+  renderCalendar(now.getFullYear(), now.getMonth() + 1, "month-12", "days-12");
+}
+
+function resetCalendar() {
+  document
+    .querySelectorAll(".days li")
+    .forEach((li) => li.classList.remove("active"));
+}
+
+renderTwoMonths();

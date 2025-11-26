@@ -455,16 +455,17 @@
               >
             </li>
             <li class="ticketing_row2" style="margin-top: 20px">
-              <input type="radio" name="point2" id="radio4" checked /><label
+              <input type="radio" name="point2" id="radio4" data-target="#domestic" checked/><label
                 for="radio4"
                 ><div class="radio active"></div>
                 <span class="label-text">왕복</span></label
               >
-              <input type="radio" name="point2" id="radio5" /><label for="radio5" id="date_change"
+              <input type="radio" name="point2" id="radio5" data-target="#international" /><label for="radio5" id="date_change"
                 ><div class="radio"></div>
                 <span class="label-text">편도</span></label
               >
             </li>
+            <div id="domestic" class="tab3-screen active">
             <li
               class="ticketing"
               id="ticketing2"
@@ -480,6 +481,42 @@
               </button>
               <button id="search">조회</button>
             </li>
+            </div>
+            <div id="international" class="tab3-screen">
+            <li class="tab3-screen-row">
+              <div class="tab3-screen-wrap">
+
+                <div class="tab3-screen-input-wrap">
+
+                  <div class="tab3-screen-input">
+                    <span class="defalut_txt">
+                      7C
+                    </span>
+                    <input
+                  type="text"
+                  name="air_search"
+                  id="tab3_air_search"
+                  placeholder=""
+                  />
+                 <label for="air_search">편명</label>
+                 <p class="input_error">편명은 3~4 자리의 숫자로 입력해주세요.</p>
+                  </div>
+
+                 <div class="tab3-screen-input">
+                    <button id="departdate-tab3-screen">
+                      <span id="departdate_txt-tab3-screen"></span>
+                          </button>
+                  </div>
+
+                </div>
+
+                <div class="tab3-screen-btn">
+                  <button id="search-tab3-screen">조회</button>
+                </div>
+  
+              </div>
+            </li>
+            </div>
           </ul>
         </div>
       </div>
@@ -917,9 +954,11 @@
           <button class="closepopup7" onclick="closePopup('popup7')"></button>
         </div>
         <div class="popup7_content">
+          <div class="prev_calendar"></div>
+          <div class="next_calendar"></div>
           <div class="calendar">
             <div class="month" id="month-11"></div>
-            <ul class="week">
+            <ul class="weekdays">
               <li>일</li>
               <li>월</li>
               <li>화</li>
@@ -932,7 +971,7 @@
           </div>
           <div class="calendar">
             <div class="month" id="month-12"></div>
-                <ul class="week">
+                <ul class="weekdays">
               <li>일</li>
               <li>월</li>
               <li>화</li>
@@ -950,5 +989,25 @@
         </div>
       </div>
     </div>
+    <div id="popup8">
+      <div class="popup_inner">
+        <span class="alert8_title"><h2>망설이는 순간 마감!</h2><button class="closepopup8" onclick="closePopup('popup8')"></button></span>
+        <div class="popup8_content">
+          <img src="images/20251126090038760.avif" alt="popup_main">
+          <p>연말 여행은 타임 특가와 함께!☃️ <br>
+          국내선 1만원대부터~, 국제선 6만원대부터~!</p>
+            <div class="popup8_btn_inner">
+          <button class="popup8_promt">프로모션 혜택 자세히 보기</button>   
+            </div>     
+        </div>
+        <div class="wrap8">
+        <label for="popup8check1" class="label_wrap">
+        <input type="checkbox" id="popup8check1" class="popup8_checkbox">
+        <span class="custom-check"></span>
+        오늘 하루 보지 않기</label>
+        <button class="checkpopup8" onclick="closePopup('popup8')">확인</button></div>
+        </div>
+        </div>
+      </div>
   </body>
 </html>
