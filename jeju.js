@@ -696,10 +696,12 @@ window.addEventListener("scroll", function () {
     topmenu.style.height = "0";
     topmenu.style.overflow = "hidden";
     nav.style.height = "110px";
+    nav.style.borderBottom = "1px solid #ddd";
     navInner.style.height = "110px";
   } else {
     topmenu.style.height = "40px";
     nav.style.height = "70px";
+    nav.style.borderBottom = "0";
     navInner.style.height = "70px";
   }
 
