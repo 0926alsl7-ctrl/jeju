@@ -138,10 +138,18 @@ function hideMulti() {
   if (m) m.style.display = "none";
 }
 
-// (1) 탑배너 close
+// (1) 탑배너 close / 아래배너 close
 document.querySelector(".close").addEventListener("click", function () {
   document.querySelector(".topbanner").style.display = "none";
   document.querySelector("header").style.height = "110px";
+});
+
+document.querySelector(".permitpopup1").addEventListener("click", function () {
+  document.querySelector("#popup1").style.display = "none";
+});
+
+document.querySelector(".closepopup1").addEventListener("click", function () {
+  document.querySelector("#popup1").style.display = "none";
 });
 
 // (2) 메인 슬라이드
