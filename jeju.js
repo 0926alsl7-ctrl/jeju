@@ -696,9 +696,11 @@ window.addEventListener("scroll", function () {
     topmenu.style.height = "0";
     topmenu.style.overflow = "hidden";
     nav.style.height = "110px";
+    navInner.style.height = "110px";
   } else {
     topmenu.style.height = "40px";
     nav.style.height = "70px";
+    navInner.style.height = "70px";
   }
 
                           if (window.scrollY > mainSection.offsetTop - 100) {
