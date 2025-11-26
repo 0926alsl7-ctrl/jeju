@@ -690,7 +690,6 @@ window.addEventListener("scroll", function () {
   const topmenu = document.querySelector(".topmenu");
   const nav = document.querySelector("nav");
   const navInner = document.querySelector(".nav_inner");
-  const mainSection = document.querySelector("main");
 
     if (window.scrollY > 50) {
     topmenu.style.height = "0";
@@ -705,7 +704,7 @@ window.addEventListener("scroll", function () {
     navInner.style.height = "76px";
   }
 
-                          if (window.scrollY > mainSection.offsetTop - 100) {
+                          if (window.scrollY > 890) {
     nav.classList.add("search-mode");
   } else {
     nav.classList.remove("search-mode");
