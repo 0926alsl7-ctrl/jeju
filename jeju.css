@@ -1167,6 +1167,8 @@ main {
   font-size: 14px;
   color: #888;
   font-weight: 700;
+  letter-spacing: -1px;
+  font-family: "FlightSans", sans-serif !important;
 }
 .tab3-screen-btn {
   position: absolute;
@@ -1190,7 +1192,7 @@ main {
   line-height: 1.2;
 }
 
-.tab3-screen main section {
+main section {
   padding-top: 40px;
   max-width: 1920px;
   min-height: 208px !important;
