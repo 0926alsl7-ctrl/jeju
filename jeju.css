@@ -2504,7 +2504,7 @@ footer .footer_inner {
   transition: all 0.2s;
 }
 .custom-check::after {
-  content: "✔️";
+  content: "✔";
   font-size: 14px;
   color: #aaa;
   position: absolute;
