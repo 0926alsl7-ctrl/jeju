@@ -699,10 +699,10 @@ window.addEventListener("scroll", function () {
     nav.style.borderBottom = "1px solid #ddd";
     navInner.style.height = "110px";
   } else {
-    topmenu.style.height = "40px";
-    nav.style.height = "70px";
+    topmenu.style.height = "34px";
+    nav.style.height = "76px";
     nav.style.borderBottom = "0";
-    navInner.style.height = "70px";
+    navInner.style.height = "76px";
   }
 
                           if (window.scrollY > mainSection.offsetTop - 100) {
