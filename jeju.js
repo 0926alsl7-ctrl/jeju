@@ -371,9 +371,9 @@ tab3Radios.forEach((radio) => {
   });
 });
 
-document.querySelector(
-  "#departdate_txt-tab3-screen"
-).textContent = `${formatDate(today)}`;
+document.getElementById(
+  "departdate_txt-tab3-screen"
+).textContent = formatDate(new Date());
 
 // (11) 탭2 예약번호 active
 const reservenums = document.querySelectorAll(".reservenum li");
