@@ -2391,6 +2391,7 @@ footer .footer_inner {
 }
 
 #popup8 {
+  z-index : 4000;
   width: 380px;
   height: fit-content;
   border-radius: 4px;
