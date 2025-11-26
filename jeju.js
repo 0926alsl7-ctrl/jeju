@@ -88,9 +88,9 @@ function resetTab3RadioNames() {
 }
 function changeTab3RadioNames() {
   document.querySelector('label[for="radio4"] .label-text').textContent =
-    "구간조회";
+    "구간 조회";
   document.querySelector('label[for="radio5"] .label-text').textContent =
-    "편명조회";
+    "편명 조회";
 }
 
 // (0) Tab1 Clickcolor 기능 - handleTab1ClickColor
