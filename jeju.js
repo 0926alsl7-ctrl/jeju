@@ -580,10 +580,7 @@ setInterval(() => {
 
 // 팝업
 
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelector("#popup8").display = "block";
-  document.querySelector(".popup_bg").display = "block";
-});
+window.addEventListener("load", ()=>{openPopup("popup8");});
 
 $(".departdate").click(() => {
   openPopup("popup4");
@@ -595,8 +592,7 @@ $("#reservesearch").click(() => {
   openPopup("popup6");
 });
 $("#reserve2").click(() => {
-  document.querySelector("#popup7").display = "block";
-  document.querySelector(".popup_bg").display = "block";
+  openPopup("popup7");
 });
 
 // 팝업 - calendar
