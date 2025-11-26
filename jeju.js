@@ -684,3 +684,26 @@ function resetCalendar() {
 }
 
 renderTwoMonths();
+
+// 스크롤 이벤트 - nav 변화
+window.addEventListener("scroll", function () {
+  const topmenu = document.querySelector(".topmenu");
+  const nav = document.querySelector("nav");
+  const navInner = document.querySelector(".nav_inner");
+  const mainSection = document.querySelector("main");
+
+    if (window.scrollY > 50) {
+    topmenu.style.height = "0";
+    topmenu.style.overflow = "hidden";
+    nav.style.height = "110px";
+  } else {
+    topmenu.style.height = "40px";
+    nav.style.height = "70px";
+  }
+
+                          if (window.scrollY > mainSection.offsetTop - 100) {
+    nav.classList.add("search-mode");
+  } else {
+    nav.classList.remove("search-mode");
+  }
+});
