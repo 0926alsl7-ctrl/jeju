@@ -211,6 +211,22 @@ nav .nav_inner {
   border-top: 0;
 }
 
+nav.search-mode .menu{
+  display:none;
+}
+
+nav.search-mode .searchbox{
+  display: box;
+}
+
+.searchbox{
+  display:none;
+  justify-content:space-between;
+  align-items:center;
+  padding: 10px;
+  height: 40px;
+}
+
 .nav_inner .my {
   display: flex;
   align-items: center;
