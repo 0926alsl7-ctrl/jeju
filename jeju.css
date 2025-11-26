@@ -1085,9 +1085,9 @@ main {
   position: relative;
 }
 #tab3_air_search {
-  height: 33px !important;
+  height: 17px !important;
   caret-color: #ff5000;
-  font-size: 14px;
+  font-size: 13px;
   color: #333;
   background: transparent;
   outline: none;
@@ -1104,10 +1104,9 @@ main {
   padding-left: 26px;
 }
 .defalut_txt {
-  height: 33px;
   background-color: #fff;
   padding-right: 6px;
-  line-height: 33px;
+  line-height: 41px;
   display: block;
   font-size: 13px;
   font-weight: 700;
