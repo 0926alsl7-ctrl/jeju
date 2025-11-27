@@ -588,9 +588,9 @@ setInterval(() => {
 
 // 팝업
 
-window.addEventListener("load", () => {
-  openPopup("popup8");
-});
+// window.addEventListener("load", () => {
+//   openPopup("popup8");
+// });
 
 $(".departdate").click(() => {
   openPopup("popup4");
@@ -692,6 +692,7 @@ window.addEventListener("scroll", function () {
   const topmenu = document.querySelector(".topmenu");
   const nav = document.querySelector("nav");
   const navInner = document.querySelector(".nav_inner");
+  const cookie = this.document.querySelector("#popup1");
 
   if (window.scrollY > 50) {
     topmenu.style.height = "0";
@@ -699,11 +700,13 @@ window.addEventListener("scroll", function () {
     nav.style.height = "110px";
     nav.style.borderBottom = "1px solid #ddd";
     navInner.style.height = "110px";
+    cookie.style.display = "none";
   } else {
     topmenu.style.height = "34px";
     nav.style.height = "76px";
     nav.style.borderBottom = "0";
     navInner.style.height = "76px";
+    cookie.style.display = "block";
   }
 
   if (window.scrollY > 890) {
@@ -711,4 +714,15 @@ window.addEventListener("scroll", function () {
   } else {
     nav.classList.remove("search-mode");
   }
+});
+
+// 모바일
+document.querySelector(".m-gnb-open").addEventListener("click", () => {
+  document.querySelector(".mo-gnb").classList.add("active");
+  document.querySelector(".m-header").style.display = "none";
+});
+
+document.querySelector(".m-close").addEventListener("click", () => {
+  document.querySelector(".mo-gnb").classList.remove("active");
+  document.querySelector(".m-header").style.display = "block";
 });

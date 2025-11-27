@@ -10,6 +10,7 @@
       href="https://static.jejuair.net/hpgg/resources/images/icon/favicon.ico"
     />
     <link rel="stylesheet" href="jeju.css".css">
+    <link rel="stylesheet" href="jeju-mobile.css" media="screen and (max-width:1079px)">
     <script src="jquery-3.7.1.min.js"></script>
     <script src="jeju.js" defer></script>
   </head>
@@ -287,6 +288,280 @@
         </div>
       </nav>
     </header>
+    <div class="m-header">
+      <div class="m-header-inner">
+        <div class="m-header-logo"></div>
+        <div class="m-menu-open">
+          <button class="m-gnb-open"></button>
+        </div>
+      </div>
+    </div>
+    <div class="mo-gnb">
+      <div class="mo-gnb-header">
+        <div class="mo-gnb-header-top">
+          <a href="#" class="m-home">
+            <img src="images/icon_bottombar_home_on_56x2.png" alt="m-home">
+          </a>
+          <a href="#" class="m-select-lang">
+          <img src="images/earth.svg" alt="m-lang-img"/>
+          <select name="lang" id="lang">
+                <option value="한국어">한국어</option>
+                <option value="일본어">日本語</option>
+                <option value="한국어">简体中文</option>
+                <option value="한국어">ENGLISH</option>
+              </select>
+              </a>
+          <button class="m-down-app">
+            <img src="images/icon-file-downloand.png" alt="download">
+            <span class="m-down-app-txt">
+              APP
+            </span>
+          </button>
+           <button class="m-close">
+            <img src="images/icon-header-gnb-close.png" alt="m-close">
+           </button>
+        </div>
+        <div class="mo-gnb-header-btm">
+          <div class="mo-gnb-hb-title">
+            <h4>로그인 하시고<br>더 풍부한 혜택을 누리세요!</h4>
+          </div>
+          <div class="mo-login">
+            <button class="m-login1">회원가입</button>
+            <button class="m-login2">로그인</button>
+          </div>
+          <div class="mo-reserve-search">
+            <p>제주항공에서 예약하지 않으셨다면?</p>
+            <span class="txt_orange">예약조회</span>
+          </div>
+          <div class="mo-icon">
+            
+              <a href="#"><img src="images/20211117132250301.avif" alt="m-icon"><span class="icon-txt">나의 예약현황</span></a>
+              <a href="#"><img src="images/20211005132323185.png" alt="m-icon"><span class="icon-txt">스케줄/출도착 조회</span></a>
+              <a href="#"><img src="images/20211005132333367.png" alt="m-icon"><span class="icon-txt">고객센터</span></a>
+            
+          </div>
+        </div>
+      </div>
+      <hr class="spacer"></hr>
+      <div class="m-menu-wrap">
+        <ul class="m-menu-list">
+          <li><button class="on">예약</button></li>
+          <li><button class="on">여행 준비</button></li>
+          <li><button class="on">여행 편의</button></li>
+          <li><button class="on">J 멤버스</button></li>
+          <li><button class="on">이벤트/제휴</button></li>
+          <li><button class="on">J 캠페인</button></li>
+        </ul>
+      </div>
+      <div class="m-submenu-wrap">
+        <div class="m-submenu-box-group">
+          <div class="m-submenu-box">
+            <a href="#" class="m-submenu-title">예매 안내</a>
+            <div class="m-submenu-drop">
+              <a href="#" class="m-submenu-drop-list">항공권 예매</a>
+              <a href="#" class="m-submenu-drop-list">나중에 결제</a>
+              <a href="#" class="m-submenu-drop-list">운임옵션</a>
+              <a href="#" class="m-submenu-drop-list">결제혜택</a>
+              <a href="#" class="m-submenu-drop-list">기프티켓</a>
+            </div>
+          </div>
+        </div>
+        <div class="m-submenu-box-group">
+          <div class="m-submenu-box">
+            <a href="#" class="m-submenu-title">예약 안내</a>
+            <div class="m-submenu-drop">
+              <a href="#" class="m-submenu-drop-list">나의 예약 현황</a>
+              <a href="#" class="m-submenu-drop-list">비회원 예약 조회</a>
+            </div>
+          </div>
+        </div>
+        <div class="m-submenu-box-group">
+          <div class="m-submenu-box">
+            <a href="#" class="m-submenu-title">운임 규정 안내</a>
+            <div class="m-submenu-drop">
+              <a href="#" class="m-submenu-drop-list">국내선 운임</a>
+              <a href="#" class="m-submenu-drop-list">국제선 운임</a>
+            </div>
+          </div>
+        </div>
+        <div class="m-submenu-box-group">
+          <div class="m-submenu-box">
+            <a href="#" class="m-submenu-title">운항 조회</a>
+            <div class="m-submenu-drop">
+              <a href="#" class="m-submenu-drop-list">운항 스케줄</a>
+              <a href="#" class="m-submenu-drop-list">출도착 현황</a>
+            </div>
+          </div>
+        </div>
+        <div class="m-submenu-box-group">
+          <div class="m-submenu-box">
+            <a href="#" class="m-submenu-title">탑승 수속 안내</a>
+            <div class="m-submenu-drop">
+              <a href="#" class="m-submenu-drop-list">빠른 수속</a>
+              <a href="#" class="m-submenu-drop-list">모바일 탑승권</a>
+              <a href="#" class="m-submenu-drop-list">공항 정보</a>
+              <a href="#" class="m-submenu-drop-list">출입국 신고서</a>
+              <a href="#" class="m-submenu-drop-list">공항 혼잡도 안내</a>
+              <a href="#" class="m-submenu-drop-list">사전 서약서</a>
+            </div>
+          </div>
+        </div>
+        <div class="m-submenu-box-group">
+          <div class="m-submenu-box">
+            <a href="#" class="m-submenu-title">수하물 안내</a>
+            <div class="m-submenu-drop">
+              <a href="#" class="m-submenu-drop-list">사전 수하물</a>
+              <a href="#" class="m-submenu-drop-list">기내 수하물</a>
+              <a href="#" class="m-submenu-drop-list">위탁 수하물</a>
+              <a href="#" class="m-submenu-drop-list">운송제한 물품</a>
+              <a href="#" class="m-submenu-drop-list">수하물 분실 및 배상</a>
+            </div>
+          </div>
+        </div>
+        <div class="m-submenu-box-group">
+          <div class="m-submenu-box">
+            <a href="#" class="m-submenu-title">좌석 안내</a>
+            <div class="m-submenu-drop">
+              <a href="#" class="m-submenu-drop-list">사전 좌석 구매</a>
+              <a href="#" class="m-submenu-drop-list">현장 좌석 구매</a>
+              <a href="#" class="m-submenu-drop-list">비즈니스 라이트</a>
+            </div>
+          </div>
+        </div>
+        <div class="m-submenu-box-group">
+          <div class="m-submenu-box">
+            <a href="#" class="m-submenu-title">기내 서비스 안내</a>
+            <div class="m-submenu-drop">
+              <a href="#" class="m-submenu-drop-list">사전 기내식</a>
+              <a href="#" class="m-submenu-drop-list">에어카페 & 설렘배송</a>
+              <a href="#" class="m-submenu-drop-list">기내 면세품 사전주문</a>
+              <a href="#" class="m-submenu-drop-list">기내 FUN 서비스</a>
+              <a href="#" class="m-submenu-drop-list">기내 유실물 찾기</a>
+            </div>
+          </div>
+        </div>
+        <div class="m-submenu-box-group">
+          <div class="m-submenu-box">
+            <a href="#" class="m-submenu-title">가족 여행 안내</a>
+            <div class="m-submenu-drop">
+            </div>
+          </div>
+        </div>
+        <div class="m-submenu-box-group">
+          <div class="m-submenu-box">
+            <a href="#" class="m-submenu-title">스포츠 서비스</a>
+            <div class="m-submenu-drop">
+              <a href="#" class="m-submenu-drop-list">골프 멤버십</a>
+              <a href="#" class="m-submenu-drop-list">스포츠 멤버십</a>
+              <a href="#" class="m-submenu-drop-list">자전거 케이스 대여</a>
+            </div>
+          </div>
+        </div>
+        <div class="m-submenu-box-group">
+          <div class="m-submenu-box">
+            <a href="#" class="m-submenu-title">케어 서비스</a>
+            <div class="m-submenu-drop">
+              <a href="#" class="m-submenu-drop-list">유아 동반 고객</a>
+              <a href="#" class="m-submenu-drop-list">어린이 안심 케어 서비스</a>
+              <a href="#" class="m-submenu-drop-list">휠체어 이용 고객</a>
+              <a href="#" class="m-submenu-drop-list">임산부 고객</a>
+              <a href="#" class="m-submenu-drop-list">의사소견서 필요 고객</a>
+              <a href="#" class="m-submenu-drop-list">시각,청각 장애인 고객 고객</a>
+              <a href="#" class="m-submenu-drop-list">기내 수어 서비스</a>
+            </div>
+          </div>
+        </div>
+        <div class="m-submenu-box-group">
+          <div class="m-submenu-box">
+            <a href="#" class="m-submenu-title">반려동물 서비스</a>
+            <div class="m-submenu-drop">
+              <a href="#" class="m-submenu-drop-list">반려동물 운송 서비스</a>
+              <a href="#" class="m-submenu-drop-list">펫 멤버십 / 펫 패스</a>
+            </div>
+          </div>
+        </div>
+        <div class="m-submenu-box-group">
+          <div class="m-submenu-box">
+            <a href="#" class="m-submenu-title">보험 및 보장</a>
+            <div class="m-submenu-drop">
+              <a href="#" class="m-submenu-drop-list">여행자 보험</a>
+              <a href="#" class="m-submenu-drop-list">수수료안심플러스+</a>
+            </div>
+          </div>
+        </div>
+        <div class="m-submenu-box-group">
+          <div class="m-submenu-box">
+            <a href="#" class="m-submenu-title">J SHOP</a>
+            <div class="m-submenu-drop">
+            </div>
+          </div>
+        </div>
+        <div class="m-submenu-box-group">
+          <div class="m-submenu-box">
+            <a href="#" class="m-submenu-title">J 포인트</a>
+            <div class="m-submenu-drop">
+              <a href="#" class="m-submenu-drop-list">J 포인트 안내</a>
+              <a href="#" class="m-submenu-drop-list">포인트 조회</a>
+              <a href="#" class="m-submenu-drop-list">탑승 후 적립</a>
+              <a href="#" class="m-submenu-drop-list">포인트 구매/선물</a>
+              <a href="#" class="m-submenu-drop-list">포인트 보내기</a>
+              <a href="#" class="m-submenu-drop-list">포인트 사용</a>
+            </div>
+          </div>
+        </div>
+        <div class="m-submenu-box-group">
+          <div class="m-submenu-box">
+            <a href="#" class="m-submenu-title">J 멤버스</a>
+            <div class="m-submenu-drop">
+              <a href="#" class="m-submenu-drop-list">회원등급 안내</a>
+              <a href="#" class="m-submenu-drop-list">신규 회원 혜택</a>
+              <a href="#" class="m-submenu-drop-list">프로모션 코드</a>
+              <a href="#" class="m-submenu-drop-list">쿠폰 등록</a>
+              <a href="#" class="m-submenu-drop-list">나의 쿠폰</a>
+            </div>
+          </div>
+        </div>
+        <div class="m-submenu-box-group">
+          <div class="m-submenu-box">
+            <a href="#" class="m-submenu-title">J-트립</a>
+            <div class="m-submenu-drop">
+            </div>
+          </div>
+        </div>
+        <div class="m-submenu-box-group">
+          <div class="m-submenu-box">
+            <a href="#" class="m-submenu-title">이벤트</a>
+            <div class="m-submenu-drop">
+              <a href="#" class="m-submenu-drop-list">진행중인 이벤트</a>
+              <a href="#" class="m-submenu-drop-list">종료된 이벤트</a>
+            </div>
+          </div>
+        </div>
+        <div class="m-submenu-box-group">
+          <div class="m-submenu-box">
+            <a href="#" class="m-submenu-title">J 멤버스 혜택존</a>
+            <div class="m-submenu-drop">
+              <a href="#" class="m-submenu-drop-list">렌터카</a>
+              <a href="#" class="m-submenu-drop-list">호텔/숙소</a>
+              <a href="#" class="m-submenu-drop-list">금융/여행자보험</a>
+              <a href="#" class="m-submenu-drop-list">골프/투어</a>
+              <a href="#" class="m-submenu-drop-list">공항편의</a>
+              <a href="#" class="m-submenu-drop-list">관광</a>
+              <a href="#" class="m-submenu-drop-list">먹거리</a>
+              <a href="#" class="m-submenu-drop-list">콘텐츠</a>
+            </div>
+          </div>
+        </div>
+         <div class="m-submenu-box-group">
+          <div class="m-submenu-box">
+            <a href="#" class="m-submenu-title">J 캠페인</a>
+            <div class="m-submenu-drop">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="m-gnb-footer"></div>
+    </div>
     <main>
       <div class="slider">
         <div class="slides">

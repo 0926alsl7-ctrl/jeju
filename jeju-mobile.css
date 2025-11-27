@@ -1,0 +1,372 @@
+@font-face {
+  font-family: "FlightSans";
+  src: url(fonts/TTF/FlightSans-Regular.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "FlightSans";
+  src: url(fonts/TTF/FlightSans-Bold.ttf) format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "FlightSans";
+  src: url(fonts/TTF/FlightSans-Title.ttf) format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.m-header {
+  width: 100%;
+  z-index: 5;
+  position: relative;
+  background: transparent;
+}
+
+.m-header-inner {
+  transition: all 0.1s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  padding: 0 20px;
+}
+
+.m-header-logo {
+  display: block;
+  width: 102px;
+  height: 20px;
+  background: url(images/20250106114305352.avif);
+  background-size: 100%;
+}
+
+.m-menu-open {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  /* margin-left: 20px; */
+}
+
+.m-gnb-open {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 0;
+  width: 100%;
+  height: 100%;
+  background: url(images/icon-hamburger-header-white.png);
+  background-size: 100%;
+}
+
+.mo-gnb {
+  position: fixed;
+  right: -425px;
+  top: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  overflow-y: auto;
+  padding-bottom: 30px;
+  background-color: #fff;
+  z-index: 1000;
+  outline: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: right 0.5s ease, opacity 0.3s ease;
+}
+.mo-gnb.active {
+  right: 0;
+  top: 0;
+  opacity: 1;
+  pointer-events: auto;
+}
+.mo-gnb-header {
+  position: relative;
+}
+.mo-gnb-header-top {
+  display: flex;
+  align-items: center;
+  height: 70px;
+  padding: 0 40px 0 20px;
+  border-bottom: 1px solid #ddd;
+  width: 100%;
+  background-color: #fff;
+}
+
+.m-home {
+  width: 26px;
+  height: 26px;
+  display: block;
+  position: relative;
+  left: -5px;
+  cursor: pointer;
+}
+.m-home img {
+  width: 24px;
+  height: 24px;
+}
+.m-select-lang {
+  margin-left: 5px;
+  width: auto;
+  height: 26px;
+  line-height: 26px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.m-select-lang img {
+  width: 18px;
+  display: flex;
+  align-items: center;
+}
+.m-select-lang select {
+  width: 64px;
+  border: 0;
+  outline: 0;
+  text-align: left;
+  font-family: "FlightSans";
+  font-size: 11px;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+}
+.m-down-app {
+  position: absolute;
+  right: 70px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  height: 30px;
+  padding: 0 6px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+.m-down-app img {
+  cursor: pointer;
+  padding-bottom: 1px;
+  width: 14px;
+  height: 14px;
+}
+.m-down-app-txt {
+  font-size: 14px;
+  color: #888;
+  padding-left: 4px;
+  align-content: center;
+}
+.m-close {
+  background: none;
+  position: absolute;
+  right: 15px;
+  border: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.m-close img {
+  width: 20px;
+  height: 20px;
+}
+.mo-gnb-header-btm {
+  padding: 0 20px;
+  margin-top: 10px;
+}
+.mo-gnb-hb-title {
+  padding-top: 20px;
+}
+
+.mo-gnb-hb-title h4 {
+  font-size: 16px;
+  color: #000;
+  font-weight: 800;
+  line-height: 24px;
+}
+/* PC 화면 숨기기한거 */
+header {
+  display: none;
+}
+section {
+  display: none;
+}
+article {
+  display: none;
+}
+footer {
+  display: none;
+}
+/*  */
+.mo-login {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 20px 0 0;
+}
+.mo-login button {
+  width: 100%;
+  min-width: 104px;
+  height: 40px;
+  padding: 0 16px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #fff;
+  align-content: center;
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  border-radius: 2px;
+  border: 0;
+}
+.m-login1 {
+  background-color: #000;
+}
+.m-login2 {
+  margin-left: 10px;
+  background-color: #ff5000;
+}
+
+.mo-reserve-search {
+  padding-top: 20px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  line-height: 24px;
+}
+.mo-reserve-search p {
+  font-size: 14px;
+  color: #000;
+  font-weight: 700;
+}
+.txt_orange {
+  cursor: pointer;
+  font-size: 14px;
+  color: #ff5000;
+  text-decoration: underline;
+  text-underline-position: under;
+}
+.mo-icon {
+  width: 100%;
+  display: flex;
+  margin: 30px 0 20px;
+  border-top: 1px solid #ddd;
+}
+.mo-icon a {
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.mo-icon img {
+  width: 56px;
+  height: 56px;
+}
+.icon-txt {
+  font-size: 13px;
+  font-weight: 700;
+  display: block;
+  text-align: center;
+}
+.spacer {
+  height: 8px;
+  margin: 0 -20px;
+  border-top: 0px solid #ddd;
+  background-color: #eee;
+}
+.m-menu-wrap {
+  position: sticky;
+  top: 69px;
+  padding: 30px 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  background-color: #fff;
+  z-index: 1000;
+}
+.m-menu-list {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  min-width: 345px;
+  white-space: nowrap;
+  margin-right: 40px;
+  transition: all 0.3s linear;
+}
+.m-menu-list .on {
+  border: 0;
+  font-size: 13px;
+  color: #333;
+  display: inline-block;
+  padding: 5px 18px;
+  border-radius: 15px;
+  background-color: #f2f2f2;
+}
+.on.active {
+  color: #fff;
+  background-color: #ff5000;
+  font-weight: 700;
+}
+.m-submenu-wrap {
+  padding: 0 20px;
+}
+.m-submenu-box-group {
+  margin-top: 40px;
+}
+.m-submenu-box-group:first-child {
+  margin-top: 0;
+}
+
+.m-submenu-box {
+  box-sizing: border-box;
+  display: block;
+}
+.m-submenu-title {
+  width: 100%;
+  display: block;
+  line-height: 1.5;
+  font-size: 16px;
+  font-weight: 800;
+  color: #000;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+.m-submenu-drop-list {
+  padding: 12px 30px 12px 0;
+  display: block;
+  position: relative;
+  font-size: 16px;
+  color: #000;
+  line-height: 18px;
+}
+.m-gnb-footer {
+  margin: 0 -20px;
+}
+
+main {
+  transform: translateY(-60px);
+  padding-top: 0;
+}
+/* main .slider {
+  height: 483px;
+}
+.slides {
+  height: 483px;
+}
+.slide {
+  height: 100%;
+} */
+
+#slidebtn #left,
+#slidebtn #right,
+#slidebtn .stop {
+  display: none;
+}
