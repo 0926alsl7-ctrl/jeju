@@ -692,7 +692,6 @@ window.addEventListener("scroll", function () {
   const topmenu = document.querySelector(".topmenu");
   const nav = document.querySelector("nav");
   const navInner = document.querySelector(".nav_inner");
-  const dropScroll = document.querySelector(".drop");
 
   if (window.scrollY > 50) {
     topmenu.style.height = "0";
@@ -700,13 +699,11 @@ window.addEventListener("scroll", function () {
     nav.style.height = "110px";
     nav.style.borderBottom = "1px solid #ddd";
     navInner.style.height = "110px";
-    // dropScroll.style.marginTop = "36px";
   } else {
     topmenu.style.height = "34px";
     nav.style.height = "76px";
     nav.style.borderBottom = "0";
     navInner.style.height = "76px";
-    // dropScroll.style.marginTop = "0";
   }
 
   if (window.scrollY > 890) {
