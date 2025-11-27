@@ -722,6 +722,96 @@ document.querySelector(".m-gnb-open").addEventListener("click", () => {
   document.querySelector(".m-header").style.display = "none";
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  
+  const gnb = document.querySelector(".mo-gnb");
+  const gnbHeaderTop = document.querySelector(".mo-gnb-header-top");
+  const loginSection = document.querySelector(".mo-login");
+  const menuButtons = document.querySelectorAll(".m-menu-list button");
+  const submenuGroups = document.querySelectorAll(".m-submenu-box-group");
+
+  let originalHeaderHTML = gnbHeaderTop.innerHTML; // 원래 헤더 보관
+  let isHeaderChanged = false;
+
+  /* -----------------------------
+      1) 스크롤 → 헤더 변화 & 고정
+  ------------------------------ */
+  function handleHeaderChange() {
+    const loginTop = loginSection.getBoundingClientRect().top;
+
+    // mo-login 위치가 화면 상단보다 위로 올라갔을 때
+    if (loginTop <= 0 && !isHeaderChanged) {
+
+      gnbHeaderTop.classList.add("fixed");
+
+      // 헤더 내용 변경
+      gnbHeaderTop.innerHTML = `
+        <button class="m-login1">회원가입</button>
+        <button class="m-login2">로그인</button>
+        <button class="m-close"><img src="images/icon-header-gnb-close.png"></button>
+      `;
+
+      isHeaderChanged = true;
+    }
+
+    // 다시 위로 올라왔을 때 → 원래대로 복구
+    if (loginTop > 0 && isHeaderChanged) {
+      gnbHeaderTop.classList.remove("fixed");
+      gnbHeaderTop.innerHTML = originalHeaderHTML;
+      isHeaderChanged = false;
+    }
+  }
+
+  /* 고정될 때 CSS 효과 주기 위한 클래스 */
+  const style = document.createElement("style");
+  style.innerHTML = `
+    .mo-gnb-header-top.fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      z-index: 2000;
+      border-bottom: 1px solid #ddd;
+    }
+  `;
+  document.head.appendChild(style);
+
+
+
+  /* -----------------------------
+      2) 메뉴 sticky는 CSS로 OK
+  ------------------------------ */
+  // m-menu-wrap 자체 sticky는 잘 되어 있으므로 JS 수정 X.
+
+
+
+  /* -----------------------------
+      3) 스크롤 시 메뉴 active 
+  ------------------------------ */
+  function handleMenuActive() {
+    submenuGroups.forEach((box, index) => {
+      const rect = box.getBoundingClientRect();
+
+      // 화면 상단 부근에 오면 활성화
+      if (rect.top <= 150 && rect.bottom >= 150) {
+        menuButtons.forEach(btn => btn.classList.remove("active"));
+        menuButtons[index].classList.add("active");
+      }
+    });
+  }
+
+
+  /* -----------------------------
+      스크롤 이벤트 등록
+  ------------------------------ */
+  document.querySelector(".mo-gnb").addEventListener("scroll", () => {
+    handleHeaderChange();
+    handleMenuActive();
+  });
+
+});
+
 document.querySelector(".m-close").addEventListener("click", () => {
   document.querySelector(".mo-gnb").classList.remove("active");
   document.querySelector(".m-header").style.display = "block";
