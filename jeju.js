@@ -727,16 +727,16 @@ window.addEventListener("scroll", function () {
 
 //모바일
 
-// const gnb = document.querySelector(".mo-gnb");
-// document.querySelector(".m-gnb-open").addEventListener("click", () => {
-//   gnb.classList.add("active");
-// });
+ const gnb = document.querySelector(".mo-gnb");
+document.querySelector(".m-gnb-open").addEventListener("click", () => {
+   gnb.classList.add("active");
+ });
 
-// document.querySelectorAll(".m-close").forEach((btn) => {
-//   btn.addEventListener("click", () => {
-//     gnb.classList.remove("active");
-//   });
-// });
+ document.querySelectorAll(".m-close").forEach((btn) => {
+  btn.addEventListener("click", () => {
+     gnb.classList.remove("active");
+   });
+ });
 
 //(1) mo-login 도달하면 상단 고정 헤더 등장
 
@@ -761,12 +761,12 @@ gnb.addEventListener("scroll", () => {
 
 // // (0) 공통 변수
 // // --------------------------------------
-// const container = document.querySelector(".mo-gnb");
-// const submenuWrap = document.querySelector(".m-submenu-wrap");
-// const menuButtons = document.querySelectorAll(".m-menu-list button");
-// const submenuGroups = document.querySelectorAll(".m-submenu-box-group");
+const container = document.querySelector(".mo-gnb");
+const submenuWrap = document.querySelector(".m-submenu-wrap");
+const menuButtons = document.querySelectorAll(".m-menu-list button");
+const submenuGroups = document.querySelectorAll(".m-submenu-box-group");
 
-// let isScrollingByClick = false;
+let isScrollingByClick = false;
 // // --------------------------------------
 // // (1) 메뉴별 시작 index 미리 계산
 // // --------------------------------------
@@ -850,59 +850,3 @@ gnb.addEventListener("scroll", () => {
 
 // container.addEventListener("scroll", updateActiveMenuOnScroll);
 
- // 모바일 GNB 열기
-document.querySelector('.m-gnb-open-btn')?.addEventListener('click', () => {
-  document.querySelector('.mo-gnb').classList.add('active');
-
-  // 열릴 때 스크롤 초기화
-  const submenuWrap = document.querySelector('.m-submenu-wrap');
-  if (submenuWrap) submenuWrap.scrollTop = 0;
-});
-
-// 모바일 GNB 닫기
-document.querySelectorAll('.m-close').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelector('.mo-gnb').classList.remove('active');
-  });
-});
-
-// 상단 메뉴 버튼 (예약 / 여행준비 / 여행편의 ...)
-const topMenuBtns = document.querySelectorAll('.m-menu-list button');
-const submenuGroups = document.querySelectorAll('.m-submenu-box-group');
-
-// 기본값: 아무것도 선택 안 된 상태
-let activeIndex = -1;
-
-topMenuBtns.forEach((btn, index) => {
-  btn.addEventListener('click', () => {
-
-    // 이전에 선택된 버튼 원래 상태로 초기화
-    if (activeIndex !== -1) {
-      topMenuBtns[activeIndex].classList.remove('on');
-    }
-
-    // 현재 버튼에 active 추가
-    btn.classList.add('on');
-    activeIndex = index;
-
-    // 스크롤 초기화
-    const submenuWrap = document.querySelector('.m-submenu-wrap');
-    if (submenuWrap) submenuWrap.scrollTop = 0;
-
-    // 모든 서브메뉴 숨김
-    submenuGroups.forEach(group => group.classList.remove('show'));
-
-    // 현재 버튼의 data-count 읽기
-    const count = Number(btn.dataset.count);
-
-    // 해당 수만큼 서브메뉴 보여주기
-    let startIndex = 0;
-    for (let i = 0; i < index; i++) {
-      startIndex += Number(topMenuBtns[i].dataset.count);
-    }
-
-    for (let i = 0; i < count; i++) {
-      submenuGroups[startIndex + i].classList.add('show');
-    }
-  });
-});
