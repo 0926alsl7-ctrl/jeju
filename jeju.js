@@ -730,9 +730,12 @@ window.addEventListener("scroll", function () {
 const gnb = document.querySelector(".mo-gnb");
 document.querySelector(".m-gnb-open").addEventListener("click", () => {
   gnb.classList.add("active");
+});
 
-  const submenuWrap = document.querySelector(".m-submenu-wrap");
-  if (submenuWrap) submenuWrap.scrollTop = 0;
+document.querySelectorAll(".m-close").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    gnb.classList.remove("active");
+  });
 });
 
 //(1) mo-login 도달하면 상단 고정 헤더 등장
@@ -827,6 +830,7 @@ function updateActiveMenuOnScroll() {
 
     const boxTop = boxRect.top - containerRect.top + scrollY;
     const boxBottom = boxTop + box.offsetHeight;
+    console.log(`${boxTop} ${scrollY}`);
 
     if (scrollY >= boxTop && scrollY < boxBottom) {
       for (let m = 0; m < menuIndexRanges.length; m++) {
