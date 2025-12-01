@@ -20,7 +20,9 @@
 body {
   overflow-x: hidden;
 }
-
+.quick-menu.mobile-only {
+  display: block;
+}
 .m-header {
   width: 100%;
   z-index: 5;
