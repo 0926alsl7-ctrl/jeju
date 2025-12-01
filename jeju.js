@@ -692,7 +692,10 @@ window.addEventListener("scroll", function () {
   const topmenu = document.querySelector(".topmenu");
   const nav = document.querySelector("nav");
   const navInner = document.querySelector(".nav_inner");
-  const cookie = this.document.querySelector("#popup1");
+  const cookie = document.querySelector("#popup1");
+  const mainHeader = document.querySelector(".m-header");
+  const mainHeaderLogo = document.querySelector(".m-header-logo");
+  const mainMenuOpen = document.querySelector(".m-gnb-open");
 
   if (window.scrollY > 50) {
     topmenu.style.height = "0";
@@ -701,12 +704,18 @@ window.addEventListener("scroll", function () {
     nav.style.borderBottom = "1px solid #ddd";
     navInner.style.height = "110px";
     cookie.style.display = "none";
+    mainHeader.classList.add("sticky");
+    mainHeaderLogo.classList.add("sticky");
+    mainMenuOpen.classList.add("sticky");
   } else {
     topmenu.style.height = "34px";
     nav.style.height = "76px";
     nav.style.borderBottom = "0";
     navInner.style.height = "76px";
-    cookie.style.display = "block";
+    cookie.style.display = "none";
+    mainHeader.classList.remove("sticky");
+    mainHeaderLogo.classList.remove("sticky");
+    mainMenuOpen.classList.remove("sticky");
   }
 
   if (window.scrollY > 890) {
@@ -716,13 +725,129 @@ window.addEventListener("scroll", function () {
   }
 });
 
-// 모바일
+//모바일
+
+const gnb = document.querySelector(".mo-gnb");
 document.querySelector(".m-gnb-open").addEventListener("click", () => {
-  document.querySelector(".mo-gnb").classList.add("active");
-  document.querySelector(".m-header").style.display = "none";
+  gnb.classList.add("active");
+
+  const submenuWrap = document.querySelector(".m-submenu-wrap");
+  if (submenuWrap) submenuWrap.scrollTop = 0;
 });
 
-document.querySelector(".m-close").addEventListener("click", () => {
-  document.querySelector(".mo-gnb").classList.remove("active");
-  document.querySelector(".m-header").style.display = "block";
+document.querySelectorAll(".m-close").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    gnb.classList.remove("active");
+  });
 });
+
+//(1) mo-login 도달하면 상단 고정 헤더 등장
+
+const moLogin = document.querySelector(".mo-login");
+const moLoginSticky = document.querySelector(".sticky");
+
+let isSticky = false;
+
+gnb.addEventListener("scroll", () => {
+  const triggerPoint = moLogin.getBoundingClientRect().top;
+
+  if (triggerPoint <= 0 && !isSticky) {
+    isSticky = true;
+    moLoginSticky.classList.add("is-sticky");
+  }
+
+  if (triggerPoint > 0 && isSticky) {
+    isSticky = false;
+    moLoginSticky.classList.remove("is-sticky");
+  }
+});
+
+// (0) 공통 변수
+// --------------------------------------
+const container = document.querySelector(".mo-gnb");
+const submenuWrap = document.querySelector(".m-submenu-wrap");
+const menuButtons = document.querySelectorAll(".m-menu-list button");
+const submenuGroups = document.querySelectorAll(".m-submenu-box-group");
+
+let isScrollingByClick = false;
+// --------------------------------------
+// (1) 메뉴별 시작 index 미리 계산
+// --------------------------------------
+const menuIndexRanges = [];
+let acc = 0;
+
+menuButtons.forEach((btn) => {
+  const cnt = Number(btn.dataset.count);
+  menuIndexRanges.push({
+    start: acc,
+    end: acc + cnt - 1,
+  });
+  acc += cnt;
+});
+
+// --------------------------------------
+// (2) 버튼 클릭 시 스크롤 이동 + on 처리
+// --------------------------------------
+menuButtons.forEach((btn, idx) => {
+  btn.addEventListener("click", () => {
+    isScrollingByClick = true;
+
+    menuButtons.forEach((b) => b.classList.remove("on"));
+    btn.classList.add("on");
+
+    let startIndex = 0;
+    for (let i = 0; i < idx; i++) {
+      startIndex += Number(menuButtons[i].dataset.count);
+    }
+
+    const targetBox = submenuGroups[startIndex];
+
+    if (targetBox) {
+      targetBox.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+
+    setTimeout(() => {
+      isScrollingByClick = false;
+    }, 600);
+  });
+});
+
+// --------------------------------------
+// (3) 스크롤 시 메뉴 자동 on 적용
+// --------------------------------------
+function updateActiveMenuOnScroll() {
+  if (isScrollingByClick) return;
+
+  const scrollY = container.scrollTop;
+  // const offset = 0; // 일단 0 유지하면서 테스트
+
+  const containerRect = container.getBoundingClientRect();
+
+  let currentMenu = 0;
+
+  submenuGroups.forEach((box, i) => {
+    const boxRect = box.getBoundingClientRect();
+
+    const boxTop = boxRect.top - containerRect.top + scrollY;
+    const boxBottom = boxTop + box.offsetHeight;
+
+    if (scrollY >= boxTop && scrollY < boxBottom) {
+      for (let m = 0; m < menuIndexRanges.length; m++) {
+        const { start, end } = menuIndexRanges[m];
+        if (i >= start && i <= end) {
+          currentMenu = m;
+          break;
+        }
+      }
+    }
+  });
+
+  // on 처리
+  menuButtons.forEach((b) => b.classList.remove("on"));
+  menuButtons[currentMenu].classList.add("on");
+}
+
+container.addEventListener("scroll", updateActiveMenuOnScroll);

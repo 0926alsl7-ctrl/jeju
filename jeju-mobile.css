@@ -27,10 +27,20 @@ body {
   position: relative;
   background: transparent;
 }
+.m-header.sticky {
+  z-index: 1000;
+}
+.m-header.sticky .m-header-inner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+}
 
 .m-header-inner {
   transition: all 0.1s ease;
-  display: flex;
+  display: flex !important;
   justify-content: space-between;
   align-items: center;
   height: 60px;
@@ -42,6 +52,13 @@ body {
   width: 102px;
   height: 20px;
   background: url(images/20250106114305352.avif);
+  background-size: 100%;
+}
+.m-header-logo.sticky {
+  display: block;
+  width: 102px;
+  height: 20px;
+  background: url(images/20250123100048468.png);
   background-size: 100%;
 }
 
@@ -62,6 +79,16 @@ body {
   background: url(images/icon-hamburger-header-white.png);
   background-size: 100%;
 }
+.m-gnb-open.sticky {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 0;
+  width: 100%;
+  height: 100%;
+  background: url(images/icon-hamburger-header.png);
+  background-size: 100%;
+}
 
 .mo-gnb {
   position: fixed;
@@ -70,7 +97,6 @@ body {
   display: block;
   width: 100%;
   height: 100%;
-  overflow: hidden;
   overflow-y: auto;
   padding-bottom: 30px;
   background-color: #fff;
@@ -189,7 +215,7 @@ body {
   font-weight: 800;
   line-height: 24px;
 }
-/* PC 화면 숨기기한거 */
+
 header {
   display: none;
 }
@@ -202,12 +228,36 @@ article {
 footer {
   display: none;
 }
-/*  */
+
 .mo-login {
+  height: auto !important;
+}
+.mo-login.sticky {
+  padding: 20px 0 0;
   display: flex;
   justify-content: center;
+  align-items: center;
   text-align: center;
-  padding: 20px 0 0;
+}
+.mo-login.sticky.is-sticky {
+  padding: 14px 60px 14px 20px;
+  border-bottom: 1px solid #ddd;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  margin: 0;
+  overflow-x: hidden;
+}
+.mo-login.sticky .m-close {
+  display: none;
+}
+.mo-login.sticky.is-sticky .m-close {
+  display: block;
+  top: 14px;
+  right: 10px;
 }
 .mo-login button {
   width: 100%;
@@ -300,7 +350,7 @@ footer {
   margin-right: 40px;
   transition: all 0.3s linear;
 }
-.m-menu-list .on {
+.m-menu-list button {
   border: 0;
   font-size: 13px;
   color: #333;
@@ -309,7 +359,7 @@ footer {
   border-radius: 15px;
   background-color: #f2f2f2;
 }
-.on.active {
+.m-menu-list button.on {
   color: #fff;
   background-color: #ff5000;
   font-weight: 700;
@@ -334,7 +384,7 @@ footer {
   line-height: 1.5;
   font-size: 16px;
   font-weight: 800;
-  color: #000;
+  color: #000 !important;
   padding-bottom: 10px;
   border-bottom: 1px solid #ddd;
   margin-bottom: 10px;
@@ -344,7 +394,7 @@ footer {
   display: block;
   position: relative;
   font-size: 16px;
-  color: #000;
+  color: #000 !important;
   line-height: 18px;
 }
 .m-gnb-footer {
@@ -355,18 +405,129 @@ main {
   transform: translateY(-60px);
   padding-top: 0;
 }
-/* main .slider {
+.slider {
   height: 483px;
 }
 .slides {
-  height: 483px;
+  width: 500% !important;
+  height: 100%;
 }
 .slide {
+  width: 403px !important;
   height: 100%;
-} */
+}
 
 #slidebtn #left,
 #slidebtn #right,
 #slidebtn .stop {
   display: none;
+}
+.page {
+  font-size: 9px;
+}
+
+section {
+  min-height: 163px !important;
+  height: 163px !important;
+  margin: 0 -30px;
+  padding-top: 30px;
+}
+section ul {
+  box-sizing: content-box;
+  margin-left: 0;
+  padding: 0 10px;
+  width: 100%;
+}
+section li {
+  min-width: 70px;
+  width: 122px;
+  height: 100px;
+}
+section li span {
+  width: 60px;
+  height: 60px;
+}
+section li img {
+  width: 60px;
+  height: 60px;
+}
+section a {
+  font-weight: 400;
+  color: #333;
+  font-size: 12px;
+}
+section li:hover a {
+  font-weight: 600;
+}
+.ticket {
+  transform: translate(0);
+  width: auto;
+  top: 323px;
+  left: 20px;
+  right: 20px;
+  /* height: 141px;
+  overflow: hidden; */
+  padding: 20px 16px 30px;
+  box-sizing: border-box;
+  border-radius: 0 0 8px 8px;
+}
+.ticket .ticketing {
+  grid-template-columns: auto;
+}
+.ticket ul {
+  width: 100%;
+}
+.reserves {
+  width: auto;
+  left: 20px;
+  right: 20px;
+  top: 278px;
+  transform: translate(0);
+}
+.reserves div {
+  gap: 0;
+  display: flex;
+}
+.reserve {
+  display: block;
+  width: 100%;
+  height: 45px;
+  text-align: center;
+  align-content: center;
+  border-radius: 8px 8px 0px 0px;
+  background-color: #000000a2;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 700;
+}
+#tab1 {
+  height: 90px;
+  overflow: hidden;
+}
+#tab2 .reservenum {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.reservenum-date #reserve2 {
+  width: 100%;
+}
+#tab3 #ticketing2 {
+  min-width: auto;
+  display: flex;
+  flex-direction: column;
+}
+#search {
+  width: 100%;
+}
+#tab2 .notice {
+  width: 100%;
+  display: block;
+}
+#reservesearch {
+  position: static;
+  bottom: 10px;
+  margin-top: 20px;
+  width: 100%;
 }
