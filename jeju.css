@@ -1992,6 +1992,123 @@ footer .footer_inner {
   border: 6px solid #fff;
   border-radius: 8px;
 }
+.quick-menu {
+  box-shadow: 10px 10px 30px 10px #0000004d;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  z-index: 1000;
+  transition: all 0.5 ease;
+  display: none;
+}
+
+.quick-menu-item {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex: 1;
+  flex-shrink: 1;
+  text-align: center;
+  font-size: 11px;
+  padding: 15px 0;
+}
+
+.qucik-menu-item span {
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+  line-height: 13px;
+  color: #666;
+}
+
+.quick-menu-icon {
+  display: block;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  line-height: 1;
+}
+.qucik-menu-icon .active::after {
+  opacity: 1;
+}
+
+.quick-menu-icon::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  right: 1px;
+  z-index: -1;
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  background-color: #ff5000;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.quick-menu-icon img {
+  width: 100%;
+  height: 100%;
+}
+
+.quick-menu-qr {
+  overflow: visible;
+  top: -12px;
+  display: block;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  line-height: 1;
+}
+
+.quick-menu-qr::before {
+  animation: qr 3.5s infinite;
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  border: 1px solid #ff5000;
+}
+@keyframes qr {
+  0% {
+    translate: (0);
+  }
+  40% {
+    translatey: (10px);
+  }
+  60% {
+    translatey: (5px);
+  }
+  80% {
+    translatey: (10px);
+  }
+  100% {
+    translate: (0);
+  }
+}
+.quick-menu-qr::after {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  right: initial;
+  width: 46px;
+  height: 46px;
+  margin-left: -23px;
+  background-color: #ff5000;
+  border-radius: 50%;
+}
 .popup_bg {
   background-color: #0006;
   width: 100%;
