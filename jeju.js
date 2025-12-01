@@ -735,12 +735,6 @@ document.querySelector(".m-gnb-open").addEventListener("click", () => {
   if (submenuWrap) submenuWrap.scrollTop = 0;
 });
 
-document.querySelectorAll(".m-close").forEach((btn) => {
-  btn.addEventListener("click", () => {
-    gnb.classList.remove("active");
-  });
-});
-
 //(1) mo-login 도달하면 상단 고정 헤더 등장
 
 const moLogin = document.querySelector(".mo-login");
