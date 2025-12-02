@@ -421,9 +421,8 @@ main {
   height: 100%;
 }
 .slide {
-  width: 100%;
+  width: 100% !important;
   height: 100% !important;
-  min-height: 543px !important;
   background-size: 20% !important;
   background-position: 0 0 !important;
   background-repeat: no-repeat !important;
@@ -564,8 +563,8 @@ section li:hover a {
   top: 322px;
   left: 20px;
   right: 20px;
-  /* height: 141px;
-  overflow: hidden; */
+  /* /* height: 141px; */
+  overflow: initial;
   padding: 20px 16px 30px;
   box-sizing: border-box;
   border-radius: 0 0 8px 8px;
