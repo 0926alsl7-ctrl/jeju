@@ -173,7 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function startAutoPlay() {
     auto = setInterval(() => {
       goToSlide(index + 1);
-    }, 9000);
+    }, 8000);
   }
   startAutoPlay();
 
