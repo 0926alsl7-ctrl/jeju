@@ -726,19 +726,20 @@ window.addEventListener("scroll", function () {
 });
 
 //모바일
+//(1) 메뉴창 close / open
 
- const gnb = document.querySelector(".mo-gnb");
+const gnb = document.querySelector(".mo-gnb");
 document.querySelector(".m-gnb-open").addEventListener("click", () => {
-   gnb.classList.add("active");
- });
+  gnb.classList.add("active");
+});
 
- document.querySelectorAll(".m-close").forEach((btn) => {
+document.querySelectorAll(".m-close").forEach((btn) => {
   btn.addEventListener("click", () => {
-     gnb.classList.remove("active");
-   });
- });
+    gnb.classList.remove("active");
+  });
+});
 
-//(1) mo-login 도달하면 상단 고정 헤더 등장
+//(2) mo-login 도달하면 상단 고정 헤더 등장
 
 const moLogin = document.querySelector(".mo-login");
 const moLoginSticky = document.querySelector(".sticky");
@@ -759,94 +760,127 @@ gnb.addEventListener("scroll", () => {
   }
 });
 
-// // (0) 공통 변수
-// // --------------------------------------
-const container = document.querySelector(".mo-gnb");
+//(3) menu-list button on 활성화 영역 안에서 활성화 클릭시 > 각 서브메뉴 이동
+
+const container = document.querySelector(".mo-gnb"); // 스크롤 대상
 const submenuWrap = document.querySelector(".m-submenu-wrap");
-const menuButtons = document.querySelectorAll(".m-menu-list button");
-const submenuGroups = document.querySelectorAll(".m-submenu-box-group");
+const menuButtons = Array.from(
+  document.querySelectorAll(".m-menu-list button")
+);
+const submenuGroups = Array.from(
+  document.querySelectorAll(".m-submenu-box-group")
+);
 
+let groupOffsets = [];
+let menuIndexRanges = [];
 let isScrollingByClick = false;
-// // --------------------------------------
-// // (1) 메뉴별 시작 index 미리 계산
-// // --------------------------------------
-// const menuIndexRanges = [];
-// let acc = 0;
+let rafId = null;
 
-// menuButtons.forEach((btn) => {
-//   const cnt = Number(btn.dataset.count);
-//   menuIndexRanges.push({
-//     start: acc,
-//     end: acc + cnt - 1,
-//   });
-//   acc += cnt;
-// });
+function calcBaseOffset() {
+  const containerRect = container.getBoundingClientRect();
+  const wrapRect = submenuWrap.getBoundingClientRect();
+  return wrapRect.top - containerRect.top + container.scrollTop;
+}
 
-// // --------------------------------------
-// // (2) 버튼 클릭 시 스크롤 이동 + on 처리
-// // --------------------------------------
-// menuButtons.forEach((btn, idx) => {
-//   btn.addEventListener("click", () => {
-//     isScrollingByClick = true;
+function computeGroupOffsets() {
+  const base = calcBaseOffset();
+  const offsets = [];
+  let acc = base;
 
-//     menuButtons.forEach((b) => b.classList.remove("on"));
-//     btn.classList.add("on");
+  submenuGroups.forEach((group, i) => {
+    offsets.push(Math.round(acc));
+    const style = getComputedStyle(group);
+    const marginTop = parseFloat(style.marginTop) || 0;
+    acc += group.offsetHeight + marginTop;
+  });
 
-//     let startIndex = 0;
-//     for (let i = 0; i < idx; i++) {
-//       startIndex += Number(menuButtons[i].dataset.count);
-//     }
+  groupOffsets = offsets;
+}
 
-//     const targetBox = submenuGroups[startIndex];
+function computeMenuIndexRanges() {
+  menuIndexRanges = [];
+  let acc = 0;
+  menuButtons.forEach((btn) => {
+    const cnt = Number(btn.dataset.count) || 1;
+    menuIndexRanges.push({ start: acc, end: acc + cnt - 1 });
+    acc += cnt;
+  });
+}
 
-//     if (targetBox) {
-//       targetBox.scrollIntoView({
-//         behavior: "smooth",
-//         block: "start",
-//       });
-//     }
+function recalcAll() {
+  computeGroupOffsets();
+  computeMenuIndexRanges();
+}
+recalcAll();
 
-//     setTimeout(() => {
-//       isScrollingByClick = false;
-//     }, 600);
-//   });
-// });
+menuButtons.forEach((btn, menuIdx) => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    menuButtons.forEach((b) => b.classList.remove("on"));
+    btn.classList.add("on");
 
-// // --------------------------------------
-// // (3) 스크롤 시 메뉴 자동 on 적용
-// // --------------------------------------
-// function updateActiveMenuOnScroll() {
-//   if (isScrollingByClick) return;
+    const range = menuIndexRanges[menuIdx];
+    const targetGroupIndex = range ? range.start : 0;
+    const targetY = groupOffsets[targetGroupIndex] || 0;
 
-//   const scrollY = container.scrollTop;
-//   // const offset = 0; // 일단 0 유지하면서 테스트
+    isScrollingByClick = true;
+    container.scrollTo({ top: targetY, behavior: "smooth" });
+    setTimeout(() => {
+      isScrollingByClick = false;
+    }, 600);
+  });
+});
 
-//   const containerRect = container.getBoundingClientRect();
+function handleScroll() {
+  if (isScrollingByClick) return;
 
-//   let currentMenu = 0;
+  const scrollY = container.scrollTop;
+  let currentGroup = 0;
 
-//   submenuGroups.forEach((box, i) => {
-//     const boxRect = box.getBoundingClientRect();
+  const nearBottom =
+    container.scrollHeight - (container.clientHeight + scrollY) <= 5;
+  if (nearBottom) {
+    currentGroup = groupOffsets.length - 1;
+  } else {
+    // groupOffsets는 각 그룹의 시작 위치
+    for (let i = 0; i < groupOffsets.length; i++) {
+      const start = groupOffsets[i];
+      const end =
+        groupOffsets[i + 1] !== undefined ? groupOffsets[i + 1] : Infinity;
+      // 작은 오차 허용값 (threshold) — 8px 정도
+      const threshold = 8;
+      if (scrollY + threshold >= start && scrollY + threshold < end) {
+        currentGroup = i;
+        break;
+      }
+    }
+  }
 
-//     const boxTop = boxRect.top - containerRect.top + scrollY;
-//     const boxBottom = boxTop + box.offsetHeight;
-//     console.log(`${boxTop} ${scrollY}`);
+  // currentGroup -> 어느 메뉴에 속하는지 찾기
+  let activeMenuIdx = 0;
+  for (let m = 0; m < menuIndexRanges.length; m++) {
+    const { start, end } = menuIndexRanges[m];
+    if (currentGroup >= start && currentGroup <= end) {
+      activeMenuIdx = m;
+      break;
+    }
+  }
 
-//     if (scrollY >= boxTop && scrollY < boxBottom) {
-//       for (let m = 0; m < menuIndexRanges.length; m++) {
-//         const { start, end } = menuIndexRanges[m];
-//         if (i >= start && i <= end) {
-//           currentMenu = m;
-//           break;
-//         }
-//       }
-//     }
-//   });
+  menuButtons.forEach((b, i) => {
+    if (i === activeMenuIdx) b.classList.add("on");
+    else b.classList.remove("on");
+  });
+}
 
-//   // on 처리
-//   menuButtons.forEach((b) => b.classList.remove("on"));
-//   menuButtons[currentMenu].classList.add("on");
-// }
+function onContainerScroll() {
+  if (rafId) cancelAnimationFrame(rafId);
+  rafId = requestAnimationFrame(handleScroll);
+}
 
-// container.addEventListener("scroll", updateActiveMenuOnScroll);
+container.addEventListener("scroll", onContainerScroll);
 
+// (3) resize 또는 DOM 변동 시 재계산
+window.addEventListener("resize", () => {
+  recalcAll();
+  handleScroll();
+});

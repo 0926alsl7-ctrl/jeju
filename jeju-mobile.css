@@ -21,7 +21,7 @@ body {
   overflow-x: hidden;
 }
 .quick-menu.mobile-only {
-  display: block;
+  display: none;
 }
 .m-header {
   width: 100%;
@@ -217,7 +217,7 @@ body {
   font-weight: 800;
   line-height: 24px;
 }
-
+/* pc 숨기기 */
 header {
   display: none;
 }
@@ -230,7 +230,7 @@ article {
 footer {
   display: none;
 }
-
+/*  */
 .mo-login {
   height: auto !important;
 }
@@ -533,6 +533,3 @@ section li:hover a {
   margin-top: 20px;
   width: 100%;
 }
-
-.m-submenu-box-group{display:none;}
-.m-submenu-box-group.show{display:block;}
