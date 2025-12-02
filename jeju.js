@@ -696,6 +696,7 @@ window.addEventListener("scroll", function () {
   const mainHeader = document.querySelector(".m-header");
   const mainHeaderLogo = document.querySelector(".m-header-logo");
   const mainMenuOpen = document.querySelector(".m-gnb-open");
+  const quickMenu = document.querySelector(".quick-menu");
 
   if (window.scrollY > 50) {
     topmenu.style.height = "0";
@@ -707,6 +708,7 @@ window.addEventListener("scroll", function () {
     mainHeader.classList.add("sticky");
     mainHeaderLogo.classList.add("sticky");
     mainMenuOpen.classList.add("sticky");
+    quickMenu.classList.remove("hide");
   } else {
     topmenu.style.height = "34px";
     nav.style.height = "76px";
@@ -716,6 +718,7 @@ window.addEventListener("scroll", function () {
     mainHeader.classList.remove("sticky");
     mainHeaderLogo.classList.remove("sticky");
     mainMenuOpen.classList.remove("sticky");
+    quickMenu.classList.add("hide");
   }
 
   if (window.scrollY > 890) {
@@ -762,7 +765,7 @@ gnb.addEventListener("scroll", () => {
 
 //(3) menu-list button on 활성화 영역 안에서 활성화 클릭시 > 각 서브메뉴 이동
 
-const container = document.querySelector(".mo-gnb"); // 스크롤 대상
+const container = document.querySelector(".mo-gnb");
 const submenuWrap = document.querySelector(".m-submenu-wrap");
 const menuButtons = Array.from(
   document.querySelectorAll(".m-menu-list button")
@@ -842,12 +845,10 @@ function handleScroll() {
   if (nearBottom) {
     currentGroup = groupOffsets.length - 1;
   } else {
-    // groupOffsets는 각 그룹의 시작 위치
     for (let i = 0; i < groupOffsets.length; i++) {
       const start = groupOffsets[i];
       const end =
         groupOffsets[i + 1] !== undefined ? groupOffsets[i + 1] : Infinity;
-      // 작은 오차 허용값 (threshold) — 8px 정도
       const threshold = 8;
       if (scrollY + threshold >= start && scrollY + threshold < end) {
         currentGroup = i;
@@ -856,7 +857,6 @@ function handleScroll() {
     }
   }
 
-  // currentGroup -> 어느 메뉴에 속하는지 찾기
   let activeMenuIdx = 0;
   for (let m = 0; m < menuIndexRanges.length; m++) {
     const { start, end } = menuIndexRanges[m];
@@ -883,4 +883,42 @@ container.addEventListener("scroll", onContainerScroll);
 window.addEventListener("resize", () => {
   recalcAll();
   handleScroll();
+});
+
+// (4) 모바일 quick-menu
+const quickItems = document.querySelectorAll(".quick-menu-item");
+
+quickItems[0].classList.add("on");
+
+quickItems.forEach((item) => {
+  item.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    quickItems.forEach((i) => i.classList.remove("on"));
+
+    item.classList.add("on");
+  });
+});
+
+// (5) 모바일 footer
+const footerItems = document.querySelectorAll(
+  ".m-footer-content > li, .m-footer-content-bottom > li"
+);
+
+footerItems.forEach((item) => {
+  const title = item.querySelector(".m-footer-content-title");
+  const sub = item.querySelector(".m-footer-content-sub");
+
+  title.addEventListener("click", () => {
+    const isOpen = sub.classList.contains("is-open");
+
+    if (isOpen) {
+      sub.classList.remove("is-open");
+      title.classList.remove("is-open");
+      return;
+    }
+
+    sub.classList.add("is-open");
+    title.classList.add("is-open");
+  });
 });
