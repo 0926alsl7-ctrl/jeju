@@ -646,6 +646,7 @@ section {
   height: 100%;
   position: relative;
   overflow-x: auto;
+  scrollbar-width: none;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   box-sizing: content-box;
