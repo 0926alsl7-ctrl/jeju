@@ -1277,6 +1277,10 @@ span.title_side4 {
   height: 20px;
 }
 .custom-check::after {
+  content: "";
+  display: none;
+}
+.custom-check::before {
   content: "✔";
   font-size: 9px !important;
   color: #aaa;
@@ -1288,7 +1292,7 @@ span.title_side4 {
   border-color: #ff5000;
   background-color: #ff5000;
 }
-#popup8check1:checked + .custom-check::after {
+#popup8check1:checked + .custom-check::before {
   color: #fff !important;
 }
 .checkpopup8 {
