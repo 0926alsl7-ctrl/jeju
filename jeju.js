@@ -586,11 +586,14 @@ setInterval(() => {
   goToSlide4(currentIndex4 + 1);
 }, 5000);
 
-// 팝업
+// 팝업 ============================================================================
 
-// window.addEventListener("load", () => {
-//   openPopup("popup8");
-// });
+//메인팝업 =======================
+
+window.addEventListener("load", () => {
+  openPopup("popup8");
+});
+//=================================
 
 $(".departdate").click(() => {
   openPopup("popup4");
@@ -714,7 +717,7 @@ window.addEventListener("scroll", function () {
     nav.style.height = "76px";
     nav.style.borderBottom = "0";
     navInner.style.height = "76px";
-    cookie.style.display = "none";
+    cookie.style.display = "flex";
     mainHeader.classList.remove("sticky");
     mainHeaderLogo.classList.remove("sticky");
     mainMenuOpen.classList.remove("sticky");
@@ -728,8 +731,8 @@ window.addEventListener("scroll", function () {
   }
 });
 
-//모바일
-//(1) 메뉴창 close / open
+//모바일 =========================================================
+//(1) 모바일 메뉴 close / open
 
 const gnb = document.querySelector(".mo-gnb");
 document.querySelector(".m-gnb-open").addEventListener("click", () => {
@@ -879,7 +882,6 @@ function onContainerScroll() {
 
 container.addEventListener("scroll", onContainerScroll);
 
-// (3) resize 또는 DOM 변동 시 재계산
 window.addEventListener("resize", () => {
   recalcAll();
   handleScroll();
@@ -923,6 +925,7 @@ footerItems.forEach((item) => {
   });
 });
 
+// (6) 모바일 section - swipe/페이지
 document.addEventListener("DOMContentLoaded", () => {
   const swiper = document.querySelector(".m-section-list-swiper");
   const drag = document.querySelector(".m-section_page_drag");
@@ -947,3 +950,194 @@ document.addEventListener("DOMContentLoaded", () => {
   swiper.addEventListener("scroll", updateDrag);
   window.addEventListener("resize", updateDrag);
 });
+
+// (7) 모바일 article1 - 마우스 swiper
+const mobileSwiper = document.querySelector(".swipes");
+const mobilePagesTxt = document.querySelector(".m-article1-pagenum-txt");
+
+let isDragging = false;
+let startX = 0;
+let currentTranslate = 0;
+let prevTranslate = 0;
+
+const totalItems = mobileSwiper.children.length;
+let mobileIndex = 0;
+
+// 실제 모바일 width 계산
+function getMobileImgWidth() {
+  const item = mobileSwiper.querySelector(".swipe");
+  return item.offsetWidth + 12;
+}
+
+let imgWidth = getMobileImgWidth();
+window.addEventListener("resize", () => {
+  imgWidth = getMobileImgWidth();
+});
+
+function updateMobilePage() {
+  mobilePagesTxt.textContent = `${mobileIndex + 1} / ${totalItems} 전체보기`;
+}
+updateMobilePage();
+
+function isMobile() {
+  return window.innerWidth <= 1079;
+}
+
+mobileSwiper.addEventListener("touchstart", (e) => {
+  if (!isMobile()) return;
+
+  isDragging = true;
+  startX = e.touches[0].clientX;
+  mobileSwiper.style.transition = "none";
+});
+
+mobileSwiper.addEventListener("touchmove", (e) => {
+  if (!isMobile() || !isDragging) return;
+
+  const currentX = e.touches[0].clientX;
+  const diff = currentX - startX;
+
+  currentTranslate = prevTranslate + diff;
+  mobileSwiper.style.transform = `translateX(${currentTranslate}px)`;
+});
+
+mobileSwiper.addEventListener("touchend", () => {
+  if (!isMobile()) return;
+
+  isDragging = false;
+
+  const moved = currentTranslate - prevTranslate;
+
+  if (moved < -50) mobileIndex++;
+  else if (moved > 50) mobileIndex--;
+
+  mobileSwiper.style.transition = "0.35s ease";
+
+  if (mobileIndex < 0) {
+    mobileIndex = totalItems - 1;
+  }
+  if (mobileIndex >= totalItems) {
+    mobileIndex = 0;
+  }
+
+  prevTranslate = -mobileIndex * imgWidth;
+  mobileSwiper.style.transform = `translateX(${prevTranslate}px)`;
+
+  updateMobilePage();
+});
+
+mobileSwiper.addEventListener("transitionend", () => {
+  if (!isMobile()) return;
+
+  mobileSwiper.style.transition = "none";
+  mobileSwiper.style.transform = `translateX(${-mobileIndex * imgWidth}px)`;
+});
+
+// (8) 모바일 article3 - 마우스 swiper
+const mobileSwiper3 = document.querySelector(".swipes3");
+
+let isDragging3 = false;
+let startX3 = 0;
+let currentTranslate3 = 0;
+let prevTranslate3 = 0;
+
+function getMobileImgWidth3() {
+  const item = mobileSwiper3.querySelector(".swipe3");
+  return item.offsetWidth + 20;
+}
+
+let imgWidth3 = getMobileImgWidth3();
+
+window.addEventListener("resize", () => {
+  imgWidth3 = getMobileImgWidth3();
+});
+
+const totalItems3 = mobileSwiper3.children.length;
+
+function isMobile3() {
+  return window.innerWidth <= 1079;
+}
+
+mobileSwiper3.addEventListener("touchstart", (e) => {
+  if (!isMobile3()) return;
+
+  isDragging3 = true;
+  startX3 = e.touches[0].clientX;
+
+  mobileSwiper3.style.transition = "none";
+});
+
+mobileSwiper3.addEventListener("touchmove", (e) => {
+  if (!isMobile3() || !isDragging3) return;
+
+  const currentX = e.touches[0].clientX;
+  const diff = currentX - startX3;
+
+  currentTranslate3 = prevTranslate3 + diff;
+
+  mobileSwiper3.style.transform = `translateX(${currentTranslate3}px)`;
+});
+
+mobileSwiper3.addEventListener("touchend", () => {
+  if (!isMobile3()) return;
+
+  isDragging3 = false;
+
+  const maxIndex = totalItems3 - 1;
+
+  const moved = currentTranslate3 - prevTranslate3;
+
+  if (moved < -50) mobileIndex3++;
+  else if (moved > 50) mobileIndex3--;
+
+  if (mobileIndex3 < 0) mobileIndex3 = 0;
+  if (mobileIndex3 > maxIndex) mobileIndex3 = maxIndex;
+
+  prevTranslate3 = -mobileIndex3 * imgWidth3;
+
+  mobileSwiper3.style.transition = "0.5s ease";
+  mobileSwiper3.style.transform = `translateX(${prevTranslate3}px)`;
+});
+
+let mobileIndex3 = 0;
+
+// (8) 모바일 article4 - 마우스 swiper
+if (window.innerWidth <= 1079) {
+  let startX4 = 0;
+  let currentX4 = 0;
+  let isDragging4 = false;
+
+  swipes4.style.touchAction = "pan-y";
+
+  swipes4.addEventListener("touchstart", (e) => {
+    isDragging4 = true;
+    startX4 = e.touches[0].clientX;
+    swipes4.style.transition = "none";
+  });
+
+  swipes4.addEventListener("touchmove", (e) => {
+    if (!isDragging4) return;
+
+    currentX4 = e.touches[0].clientX;
+    const diff = currentX4 - startX4;
+
+    swipes4.style.transform = `translateX(${
+      -currentIndex4 * itemWidth4 + diff
+    }px)`;
+  });
+
+  swipes4.addEventListener("touchend", () => {
+    if (!isDragging4) return;
+    isDragging4 = false;
+
+    const diff = currentX4 - startX4;
+
+    if (diff < -60) {
+      goToSlide4(currentIndex4 + 1);
+    } else if (diff > 60) {
+      goToSlide4(currentIndex4 - 1);
+    } else {
+      goToSlide4(currentIndex4);
+    }
+  });
+}

@@ -1398,7 +1398,9 @@ article .article_inner {
   align-items: center;
   box-sizing: border-box;
 }
-
+.m-article1-pagenum.mobile-only {
+  display: none;
+}
 .slide-next,
 .slide-prev {
   display: block;
@@ -2769,11 +2771,11 @@ br.pc-only {
 }
 .custom-check::after {
   content: "✔";
-  font-size: 14px;
+  font-size: 13px;
   color: #aaa;
   position: absolute;
-  top: -1px;
-  left: 3px;
+  top: 0;
+  left: 4px;
 }
 
 #popup8check1:checked + .custom-check {
