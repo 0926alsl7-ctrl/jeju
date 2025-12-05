@@ -1282,11 +1282,11 @@ span.title_side4 {
 }
 .custom-check::before {
   content: "✔";
-  font-size: 9px !important;
+  font-size: 11px !important;
   color: #aaa;
   position: absolute;
-  top: 2px;
-  left: 5px;
+  top: 0;
+  left: 4px;
 }
 #popup8check1:checked + .custom-check {
   border-color: #ff5000;
