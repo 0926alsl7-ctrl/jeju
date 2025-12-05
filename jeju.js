@@ -1104,42 +1104,57 @@ let mobileIndex3 = 0;
 
 // (8) 모바일 article4 - 마우스 swiper
 if (window.innerWidth <= 1079) {
-  let startX4 = 0;
-  let currentX4 = 0;
   let isDragging4 = false;
+  let startX4 = 0;
+  let currentTranslate4 = -currentIndex4 * itemWidth4;
+  let prevTranslate4 = currentTranslate4;
+  let animationID4 = 0;
 
-  swipes4.style.touchAction = "pan-y";
+  swipes4.addEventListener("touchstart", touchStart4);
+  swipes4.addEventListener("mousedown", touchStart4);
 
-  swipes4.addEventListener("touchstart", (e) => {
+  swipes4.addEventListener("touchmove", touchMove4);
+  swipes4.addEventListener("mousemove", touchMove4);
+
+  swipes4.addEventListener("touchend", touchEnd4);
+  swipes4.addEventListener("mouseup", touchEnd4);
+  swipes4.addEventListener("mouseleave", touchEnd4);
+
+  function touchStart4(e) {
     isDragging4 = true;
-    startX4 = e.touches[0].clientX;
     swipes4.style.transition = "none";
-  });
 
-  swipes4.addEventListener("touchmove", (e) => {
+    startX4 = e.touches ? e.touches[0].clientX : e.clientX;
+    prevTranslate4 = currentTranslate4;
+
+    animationID4 = requestAnimationFrame(animation4);
+  }
+
+  function touchMove4(e) {
     if (!isDragging4) return;
 
-    currentX4 = e.touches[0].clientX;
-    const diff = currentX4 - startX4;
+    const currentX = e.touches ? e.touches[0].clientX : e.clientX;
+    const diff = currentX - startX4;
 
-    swipes4.style.transform = `translateX(${
-      -currentIndex4 * itemWidth4 + diff
-    }px)`;
-    swipes4.style.scrollBehavior = "smooth";
-  });
+    currentTranslate4 = prevTranslate4 + diff;
+  }
 
-  swipes4.addEventListener("touchend", () => {
-    if (!isDragging4) return;
+  function touchEnd4() {
+    cancelAnimationFrame(animationID4);
     isDragging4 = false;
 
-    const diff = currentX4 - startX4;
-
-    if (diff < -60) {
+    const movedBy = currentTranslate4 - prevTranslate4;
+    if (movedBy < -50) {
       goToSlide4(currentIndex4 + 1);
-    } else if (diff > 60) {
+    } else if (movedBy > 50) {
       goToSlide4(currentIndex4 - 1);
     } else {
       goToSlide4(currentIndex4);
     }
-  });
+  }
+
+  function animation4() {
+    swipes4.style.transform = `translateX(${currentTranslate4}px)`;
+    if (isDragging4) requestAnimationFrame(animation4);
+  }
 }
