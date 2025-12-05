@@ -17,6 +17,7 @@
   font-style: normal;
 }
 
+html,
 body {
   overflow-x: hidden !important;
 }
@@ -621,6 +622,7 @@ main {
 }
 section {
   display: block;
+  overflow: hidden !important;
   min-height: 163px !important;
   height: 163px !important;
   margin: 0 -30px;
@@ -635,7 +637,6 @@ section {
 .m-section-list-view {
   margin-left: 0;
   padding: 0 10px;
-  overflow: hidden;
   width: 100%;
   margin-right: auto;
   position: relative;
@@ -1272,11 +1273,14 @@ span.title_side4 {
 }
 .custom-check::after {
   content: "✔";
-  font-size: 11px;
+  font-size: 11px !important;
   color: #aaa;
   position: absolute;
   top: 1px;
   left: 4px;
+}
+#popup8check1:checked + .custom-check::after {
+  color: #fff;
 }
 .checkpopup8 {
   font-size: 14px !important;
