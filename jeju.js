@@ -963,7 +963,6 @@ let prevTranslate = 0;
 const totalItems = mobileSwiper.children.length;
 let mobileIndex = 0;
 
-// 실제 모바일 width 계산
 function getMobileImgWidth() {
   const item = mobileSwiper.querySelector(".swipe");
   return item.offsetWidth + 12;
@@ -1012,6 +1011,7 @@ mobileSwiper.addEventListener("touchend", () => {
   else if (moved > 50) mobileIndex--;
 
   mobileSwiper.style.transition = "0.35s ease";
+  mobileSwiper.style.scrollBehavior = "smooth";
 
   if (mobileIndex < 0) {
     mobileIndex = totalItems - 1;
@@ -1065,6 +1065,7 @@ mobileSwiper3.addEventListener("touchstart", (e) => {
   startX3 = e.touches[0].clientX;
 
   mobileSwiper3.style.transition = "none";
+  mobileSwiper3.style.scrollBehavior = "smooth";
 });
 
 mobileSwiper3.addEventListener("touchmove", (e) => {
@@ -1124,6 +1125,7 @@ if (window.innerWidth <= 1079) {
     swipes4.style.transform = `translateX(${
       -currentIndex4 * itemWidth4 + diff
     }px)`;
+    swipes4.style.scrollBehavior = "smooth";
   });
 
   swipes4.addEventListener("touchend", () => {
