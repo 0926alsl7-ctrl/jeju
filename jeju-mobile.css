@@ -1278,6 +1278,10 @@ span.title_side4 {
   top: 2px;
   left: 5px;
 }
+#popup8check1:checked + .custom-check {
+  border-color: #ff5000;
+  background-color: #ff5000;
+}
 #popup8check1:checked + .custom-check::after {
   color: #fff !important;
 }
