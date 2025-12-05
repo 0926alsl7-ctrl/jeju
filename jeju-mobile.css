@@ -1280,7 +1280,7 @@ span.title_side4 {
   left: 5px;
 }
 #popup8check1:checked + .custom-check::after {
-  color: #fff;
+  color: #fff !important;
 }
 .checkpopup8 {
   font-size: 14px !important;
