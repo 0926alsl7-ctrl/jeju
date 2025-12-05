@@ -627,21 +627,23 @@ main {
 }
 section {
   display: block;
-  padding: 0 20px;
   min-height: 163px !important;
   height: 163px !important;
+  padding: 0 20px;
   margin: 0 auto;
   padding-top: 30px;
   box-sizing: border-box;
+  max-width: 1920px;
 }
 .m-section-list {
   width: 100%;
-  /* padding-left: 16px; */
   overflow: hidden !important;
   margin: 0 auto;
   position: relative;
 }
 .m-section-list-view {
+  margin-left: 0;
+  overflow: hidden;
   width: 100%;
   margin-right: auto;
   position: relative;
