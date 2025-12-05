@@ -679,6 +679,7 @@ section li {
   background-color: transparent;
 }
 .m-section_page {
+  overflow-x: hidden;
   display: block !important;
   height: 3px;
   width: 100px;
