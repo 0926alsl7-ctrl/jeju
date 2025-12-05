@@ -622,7 +622,6 @@ main {
 }
 section {
   display: block;
-  overflow: hidden !important;
   min-height: 163px !important;
   height: 163px !important;
   margin: 0 -30px;
@@ -630,6 +629,7 @@ section {
 }
 .m-section-list {
   width: 100%;
+  overflow: hidden !important;
   padding-left: 28px;
   margin: 0 auto;
   position: relative;
