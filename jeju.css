@@ -480,56 +480,82 @@ main {
   font-size: 0;
   cursor: pointer;
 }
-
-.ticket {
+.ticket_wrap {
+  display: block;
+  margin: -290px auto 0;
+  min-height: 293px;
+  max-width: 1920px;
+}
+.reserves_wrap {
   position: absolute;
+  top: 450px;
   left: 50%;
-  top: 470px;
   transform: translate(-50%);
+  z-index: 30;
+  width: 1004px;
+}
+.ticket {
   width: 1004px;
   margin: 0 auto;
+  position: relative;
   background-color: #fff;
   box-shadow: 0 1px 6px #0000001f;
-  z-index: 3;
+  z-index: 20;
   padding: 20px 20px 30px;
   border-radius: 0 8px 8px;
   box-sizing: border-box;
 }
+.ticket_wrap_m::before {
+  content: "";
+  background-color: #f8f8f8;
+  top: 293px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  position: absolute;
+}
 
 .reserves {
-  position: absolute;
-  top: 422px;
-  left: 50%;
-  transform: translate(-50%);
-  width: 1004px;
-  z-index: 5;
-}
-.reserves div {
-  position: relative;
   display: flex;
+  z-index: 20;
+  display: flex;
+  position: relative;
   gap: 1px;
 }
+
 .reserve {
   display: block;
-  width: 250px;
-  height: 48px;
-  text-align: center;
+  display: flex;
   align-content: center;
-  border-radius: 8px 8px 0px 0px;
-  background-color: #000000a2;
-  color: #fff;
-  font-size: 18px;
+  justify-content: center;
   cursor: pointer;
-  font-weight: 700;
 }
-.reserve:hover {
-  background-color: #fff;
+.reserve > a {
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  height: 50px;
+  background-color: #0009;
+  color: #fff;
+  border-radius: 8px 8px 0 0;
+}
+
+.reserve:hover a {
   color: #333;
+  background-color: #fff;
   transition: all 0.3s ease;
 }
-.reserve.active {
+.reserves.active {
   background-color: #fff;
-  color: #333;
+}
+
+.reserve.active a {
+  background-color: #fff;
+  color: #333 !important;
 }
 .ticket ul {
   box-sizing: border-box;
@@ -1260,6 +1286,7 @@ main {
 }
 
 section {
+  display: block;
   padding-top: 40px;
   max-width: 1920px;
   min-height: 208px !important;
@@ -1276,12 +1303,13 @@ section ul {
 section li {
   width: 122px;
   height: 100px;
-  min-width: 70px;
+  min-width: 122px;
+  margin: 2px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 14px;
 }
 
 section span {

@@ -922,3 +922,28 @@ footerItems.forEach((item) => {
     title.classList.add("is-open");
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const swiper = document.querySelector(".m-section-list-swiper");
+  const drag = document.querySelector(".m-section_page_drag");
+  const dragBg = document.querySelector(".m-section_page");
+
+  function updateDrag() {
+    const maxScroll = swiper.scrollWidth - swiper.clientWidth;
+    const scrollLeft = swiper.scrollLeft;
+
+    const ratio = scrollLeft / maxScroll;
+
+    const bgWidth = dragBg.clientWidth;
+    const scrollbarWidth = bgWidth * (swiper.clientWidth / swiper.scrollWidth);
+
+    drag.style.width = scrollbarWidth + "px";
+    drag.style.transform = `translateX(${
+      ratio * (bgWidth - scrollbarWidth)
+    }px)`;
+  }
+
+  updateDrag();
+  swiper.addEventListener("scroll", updateDrag);
+  window.addEventListener("resize", updateDrag);
+});
